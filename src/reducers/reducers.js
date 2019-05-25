@@ -1,19 +1,18 @@
-let defaultState = {
-    example1: 'example',
-    example2: 'test',
+const defaultState = {
+    value: 0
 };
 
-const reducers = (state=defaultState, action) => {
+const reducers = (state = defaultState, action) => {
     switch (action.type) {
-        case 'EXAMPLE':
+        case 'INCREMENT':
             return {
                 ...state,
-                example1: 'newPropOne'
+                value: state.value + 1
             }
-        case 'EXAMPLE-TWO':
+        case 'DECREMENT':
             return {
                 ...state,
-                example2: action.payload
+                value: state.value - 1
             }
         default: return state;
     }

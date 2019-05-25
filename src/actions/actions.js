@@ -1,12 +1,11 @@
-export const exampleAction = () => (
+export const increment = () => (
     {
-        type: 'EXAMPLE'
+        type: 'INCREMENT'
     }
 )
 
-export const exampleActionTwo = (sampleData) => (
+export const decrement = () => (
     {
-        type: 'EXAMPLE-TWO',
-        payload: sampleData
+        type: 'DECREMENT'
     }
 )

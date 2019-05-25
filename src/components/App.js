@@ -1,8 +1,9 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Button } from '@blueprintjs/core';
 
-import { exampleAction } from '../actions/actions.js';
+import { increment, decrement } from '../actions/actions.js';
 
 import './css/App.css';
 
@@ -13,24 +14,23 @@ class App extends React.Component {
         this.state = {
 
         }
-        console.log(this.props)
-        
     }
 
-    exampleFunction() {
-        this.props.exampleAction();
+    exampleFunction = () => {
+        this.props.increment();
     }
 
-    componentDidMount() {
-        console.log("lmao")
-        this.exampleFunction();
+    exampleFunction2 = () => {
+        this.props.decrement();
     }
 
     render() {
         return (
         <div className="App">
             <h1>Hello World. example prop:</h1>
-            <p>{this.props.example1}</p>
+            <p>{this.props.value}</p>
+            <Button onClick={() => this.exampleFunction() } text="haha"/>
+            <Button onClick={() => this.exampleFunction2() } text="hihi"/>
         </div>
         );
     }
@@ -38,13 +38,12 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        example1: state.example1,
-        example2: state.example2,
+        value: state.state.value,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ exampleAction }, dispatch);
+    return bindActionCreators({ increment, decrement }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
