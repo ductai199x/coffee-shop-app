@@ -1,0 +1,52 @@
+{
+    "itemList": [
+        {
+            "id": "c-1",
+            "name": "coffee1",
+            "image": "https://drive.google.com/uc?export=view&id=0B4OqFeuIT6USMG5MZUR1aHlXQW8",
+            "price": [1, 2, 3],
+            "type": "frapuchino",
+            "size": ["S", "M", "L"]
+        },
+        {
+            "id": "c-2",
+            "name": "coffee2",
+            "image": "https://drive.google.com/uc?export=view&id=0B4OqFeuIT6USMG5MZUR1aHlXQW8",
+            "price": [2, 3, 4],
+            "type": "espresso",
+            "size": ["S", "M", "L"]
+        },
+        {
+            "id": "c-3",
+            "name": "coffee3",
+            "image": "https://drive.google.com/uc?export=view&id=0B4OqFeuIT6USMG5MZUR1aHlXQW8",
+            "price": [3, 4, 5],
+            "type": "machiato",
+            "size": ["S", "M", "L"]
+        },
+        {
+            "id": "c-4",
+            "name": "coffee4",
+            "image": "https://drive.google.com/uc?export=view&id=0B4OqFeuIT6USMG5MZUR1aHlXQW8",
+            "price": [3, 4, 5],
+            "type": "machiato",
+            "size": ["S", "M", "L"]
+        },
+        {
+            "id": "c-5",
+            "name": "coffee5",
+            "image": "https://drive.google.com/uc?export=view&id=0B4OqFeuIT6USMG5MZUR1aHlXQW8",
+            "price": [3, 4, 5],
+            "type": "machiato",
+            "size": ["S", "M", "L"]
+        },
+        {
+            "id": "c-6",
+            "name": "coffee6",
+            "image": "https://drive.google.com/uc?export=view&id=0B4OqFeuIT6USMG5MZUR1aHlXQW8",
+            "price": [3, 4, 5],
+            "type": "machiato",
+            "size": ["S", "M", "L"]
+        }
+    ]
+}

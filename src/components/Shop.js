@@ -1,6 +1,11 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Button } from '@blueprintjs/core';
+
+import ItemBoard from './ItemBoard.js';
+
+import './css/Shop.css';
 
 class Shop extends React.Component {
     constructor(props) {
@@ -13,9 +18,11 @@ class Shop extends React.Component {
 
     render() {
         return(
-        <div>
-            Example Component
-            <p>{this.props.value}</p>
+        <div className="Shop">
+            <Button onClick={() => this.props.getShopItems() } text="haha" />
+            
+            <ItemBoard itemList={ this.props.itemList } />
+            <pre>{ JSON.stringify(this.props.itemList, null, 4) }</pre>
         </div>
         );
     }
@@ -23,7 +30,7 @@ class Shop extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        value: state.state.value,
+        itemList: state.shop.itemList,
     }
 }
 

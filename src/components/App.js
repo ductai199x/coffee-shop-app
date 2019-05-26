@@ -1,13 +1,13 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Button } from '@blueprintjs/core';
+import { updateItemList } from '../actions/actions.js';
 
-import { increment, decrement } from '../actions/actions.js';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import Example from './Example.js';
-
-import './css/App.css';
+import Home from './Home.js';
+import Header from './Header.js';
+import Shop from './Shop.js';
 
 class App extends React.Component {
     constructor(props) {
@@ -18,35 +18,48 @@ class App extends React.Component {
         }
     }
 
-    exampleFunction = () => {
-        this.props.increment();
+    // API call to DB to get itemList
+    getShopItems = () => {
+        return new Promise((resolve, reject) => {
+            // Get mock data
+            let f = require('../mock/itemList.json')
+            // let data = JSON.parse(f)
+            // console.log(data)
+            this.props.updateItemList(f.itemList)
+            resolve()
+        })
     }
 
-    exampleFunction2 = () => {
-        this.props.decrement();
+    ShopPage = (routeProps) => {
+        return (
+            <Shop 
+                {...routeProps}
+                getShopItems={ this.getShopItems }
+            />
+        );
     }
 
     render() {
         return (
-        <div className="App">
-            <h1>Hello World. example prop:</h1>
-            <p>{this.props.value}</p>
-            <Button onClick={() => this.exampleFunction() } text="haha"/>
-            <Button onClick={() => this.exampleFunction2() } text="hihi"/>
-            <Example />
-        </div>
+        <Router>
+            <div className="App">
+                <Header />
+                <Route exact path="/" component={Home} />
+                <Route path="/shop" render={this.ShopPage} />
+            </div>
+        </Router>
         );
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        value: state.state.value,
+        itemList: state.shop.itemList,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ increment, decrement }, dispatch);
+    return bindActionCreators({ updateItemList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

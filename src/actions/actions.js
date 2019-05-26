@@ -1,11 +1,13 @@
-export const increment = () => (
+export const updateShop = (shopContent) => (
     {
-        type: 'INCREMENT'
+        type: 'UPDATE-SHOP',
+        payload: shopContent
     }
 )
 
-export const decrement = () => (
+export const updateItemList = (itemList) => (
     {
-        type: 'DECREMENT'
+        type: 'UPDATE-ITEMLIST',
+        payload: itemList
     }
 )

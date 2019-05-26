@@ -1,9 +1,8 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-// import { Button } from  '@blueprintjs/core';
 
-class Example extends React.Component {
+class Home extends React.Component {
     constructor(props) {
         super(props);
 
@@ -24,8 +23,8 @@ class Example extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        // value: state.state.value,
+        // value: state.shop.value,
     }
 }
 
-export default connect(mapStateToProps, null)(Example);
+export default connect(mapStateToProps, null)(Home);

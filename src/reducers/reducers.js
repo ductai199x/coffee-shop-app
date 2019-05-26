@@ -1,21 +1,52 @@
 const defaultState = {
-    value: 0
+    itemList: [
+        {
+            "id": "",
+            "name": "",
+            "image": "",
+            "price": [],
+            "type": "",
+            "size": []
+        },
+    ]
 };
 
-const reducers = (state = defaultState, action) => {
+export const shopReducers = (state = defaultState, action) => {
     switch (action.type) {
-        case 'INCREMENT':
+        case 'UPDATE-ITEMLIST':
             return {
                 ...state,
-                value: state.value + 1
-            }
-        case 'DECREMENT':
-            return {
-                ...state,
-                value: state.value - 1
+                itemList: action.payload
             }
         default: return state;
     }
 }
 
-export default reducers;
+export const userReducers = (state = defaultState, action) => {
+    switch (action.type) {
+        default: return state;
+    }
+}
+
+export const authReducers = (state = defaultState, action) => {
+    switch (action.type) {
+        default: return state;
+    }
+}
+
+export const promoReducers = (state = defaultState, action) => {
+    switch (action.type) {
+        default: return state;
+    }
+}
+
+/*  Just an example to update a key inside an object 
+    without updating the entire object
+case 'UPDATE-ITEMLIST':
+    return Object.assign({}, state, {
+        shopContent: {
+            ...state.shopContent,
+            itemList: action.connection
+        }
+    });
+*/
