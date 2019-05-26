@@ -5,6 +5,8 @@ import { Button } from '@blueprintjs/core';
 
 import { increment, decrement } from '../actions/actions.js';
 
+import Example from './Example.js';
+
 import './css/App.css';
 
 class App extends React.Component {
@@ -31,6 +33,7 @@ class App extends React.Component {
             <p>{this.props.value}</p>
             <Button onClick={() => this.exampleFunction() } text="haha"/>
             <Button onClick={() => this.exampleFunction2() } text="hihi"/>
+            <Example />
         </div>
         );
     }
