@@ -1,18 +1,32 @@
-const defaultState = {
+const defaultShopState = {
     type: "coffee",
     itemList: {
         coffee: [{
-            id: "",
-            name: "",
-            image: "",
-            price: [],
-            type: "",
-            size: []
-        }]
+            id: "", name: "", image: "", price: [], type: "", size: []
+        }],
+        "brand-items": [{
+            id: "", name: "", image: "", price: [], type: "", size: []
+        }],
     }
 };
 
-export const shopReducers = (state = defaultState, action) => {
+const defaultCartState = {
+
+};
+
+const defaultUserState = {
+
+};
+
+const defaultAuthState = {
+
+};
+
+const defaultPromoState = {
+
+};
+
+export const shopReducers = (state = defaultShopState, action) => {
     switch (action.type) {
         case 'UPDATE-ITEMLIST':
             return {
@@ -28,19 +42,25 @@ export const shopReducers = (state = defaultState, action) => {
     }
 }
 
-export const userReducers = (state = defaultState, action) => {
+export const cartReducers = (state = defaultCartState, action) => {
     switch (action.type) {
         default: return state;
     }
 }
 
-export const authReducers = (state = defaultState, action) => {
+export const userReducers = (state = defaultUserState, action) => {
     switch (action.type) {
         default: return state;
     }
 }
 
-export const promoReducers = (state = defaultState, action) => {
+export const authReducers = (state = defaultAuthState, action) => {
+    switch (action.type) {
+        default: return state;
+    }
+}
+
+export const promoReducers = (state = defaultPromoState, action) => {
     switch (action.type) {
         default: return state;
     }

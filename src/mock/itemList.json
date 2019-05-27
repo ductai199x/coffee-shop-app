@@ -5,7 +5,7 @@
                 "id": "coffee-1",
                 "name": "coffee1",
                 "image": "https://drive.google.com/uc?export=view&id=0B4OqFeuIT6USMG5MZUR1aHlXQW8",
-                "price": [1, 2, 3],
+                "price": [1, 2.54, 3],
                 "type": "frapuchino",
                 "size": ["S", "M", "L"]
             },

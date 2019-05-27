@@ -14,7 +14,7 @@ class Shop extends React.Component {
         this.state = {
 
         }
-        console.log(this.props.itemList.shopType)
+        console.log(this.props.shopType)
     }
 
     render() {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStore, combineReducers } from 'redux';
-import { shopReducers, 
+import { shopReducers,
+         cartReducers,
          userReducers, 
          authReducers,
          promoReducers } from '../reducers/reducers.js';
@@ -31,6 +32,7 @@ const oldState = loadState();
 export const store = createStore(
     combineReducers({
         shop: shopReducers,
+        cart: cartReducers,
         user: userReducers,
         auth: authReducers,
         promo: promoReducers,
