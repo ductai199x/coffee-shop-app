@@ -14,15 +14,16 @@ class Shop extends React.Component {
         this.state = {
 
         }
+        console.log(this.props.itemList.shopType)
     }
 
     render() {
+        console.log()
         return(
         <div className="Shop">
             <Button onClick={() => this.props.getShopItems() } text="haha" />
-            
-            <ItemBoard itemList={ this.props.itemList } />
-            <pre>{ JSON.stringify(this.props.itemList, null, 4) }</pre>
+            <ItemBoard itemList={ this.props.itemList[this.props.shopType] } />
+            <pre>{ JSON.stringify(this.props.itemList[this.props.shopType], null, 4) }</pre>
         </div>
         );
     }
@@ -31,6 +32,7 @@ class Shop extends React.Component {
 const mapStateToProps = (state) => {
     return {
         itemList: state.shop.itemList,
+        shopType: state.shop.type,
     }
 }
 

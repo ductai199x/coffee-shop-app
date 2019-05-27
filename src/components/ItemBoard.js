@@ -17,17 +17,17 @@ class ItemBoard extends React.Component {
 
     renderItem = (key) => {
         return(
-            <Card className={key.id + " cell "} key={key.id} interactive={true}>
-                <LazyLoadImage 
-                    className="Shop-Item"
-                    alt={key.name}
-                    effect="blur"
-                    placeholder={<div className="bp3-skeleton"></div>}
-                    src={key.image}
-                    width={"calc(100% - 32px)"}
-                    height={"calc(100% - 32px)"}
-                />
-            </Card>
+        <Card className={key.id + " cell "} key={key.id} interactive={true}>
+            <LazyLoadImage 
+                className="Shop-Item"
+                alt={key.name}
+                effect="blur"
+                placeholder={<div className="bp3-skeleton"></div>}
+                src={key.image}
+                width={"calc(100% - 32px)"}
+                height={"calc(100% - 32px)"}
+            />
+        </Card>
         );
     }
 

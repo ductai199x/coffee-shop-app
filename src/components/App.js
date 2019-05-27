@@ -8,6 +8,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from './Home.js';
 import Header from './Header.js';
 import Shop from './Shop.js';
+import SideMenu from './SideMenu.js';
+
+import './css/App.css';
 
 class App extends React.Component {
     constructor(props) {
@@ -44,8 +47,11 @@ class App extends React.Component {
         <Router>
             <div className="App">
                 <Header />
-                <Route exact path="/" component={Home} />
-                <Route path="/shop" render={this.ShopPage} />
+                <div className="Content">
+                    <SideMenu />
+                    <Route exact path="/" component={Home} />
+                    <Route path="/shop" render={this.ShopPage} />
+                </div>
             </div>
         </Router>
         );

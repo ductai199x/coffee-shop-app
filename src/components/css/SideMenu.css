@@ -1,0 +1,11 @@
+.Side-Menu {
+    width: 10rem;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.Side-Menu .shop-type {
+    margin: 0 auto;
+}

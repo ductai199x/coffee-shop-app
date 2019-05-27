@@ -1,7 +1,7 @@
-export const updateShop = (shopContent) => (
+export const updateShopType = (type) => (
     {
-        type: 'UPDATE-SHOP',
-        payload: shopContent
+        type: 'UPDATE-TYPE',
+        payload: type
     }
 )
 

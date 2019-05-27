@@ -1,14 +1,15 @@
 const defaultState = {
-    itemList: [
-        {
-            "id": "",
-            "name": "",
-            "image": "",
-            "price": [],
-            "type": "",
-            "size": []
-        },
-    ]
+    type: "coffee",
+    itemList: {
+        coffee: [{
+            id: "",
+            name: "",
+            image: "",
+            price: [],
+            type: "",
+            size: []
+        }]
+    }
 };
 
 export const shopReducers = (state = defaultState, action) => {
@@ -17,6 +18,11 @@ export const shopReducers = (state = defaultState, action) => {
             return {
                 ...state,
                 itemList: action.payload
+            }
+        case 'UPDATE-TYPE':
+            return {
+                ...state,
+                type: action.payload
             }
         default: return state;
     }
