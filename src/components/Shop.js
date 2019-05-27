@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Button } from '@blueprintjs/core';
+import { Drawer, Button } from '@blueprintjs/core';
 
 import ItemBoard from './ItemBoard.js';
 
@@ -12,18 +12,32 @@ class Shop extends React.Component {
         super(props);
 
         this.state = {
-
+            viewingItem: {},
+            isViewerOpen: false,
         }
-        console.log(this.props.shopType)
+    }
+
+    openItemViewer = (item) => {
+        this.setState({ viewingItem: item, isViewerOpen: true });
+    }
+
+    closeItemViewer = (item) => {
+        this.setState({ isViewerOpen: false });
     }
 
     render() {
-        console.log()
         return(
         <div className="Shop">
             <Button onClick={() => this.props.getShopItems() } text="haha" />
-            <ItemBoard itemList={ this.props.itemList[this.props.shopType] } />
-            <pre>{ JSON.stringify(this.props.itemList[this.props.shopType], null, 4) }</pre>
+            <ItemBoard itemList={ this.props.itemList[this.props.shopType] } 
+                openItemViewer={ this.openItemViewer }/>
+            <Drawer isOpen={ this.state.isViewerOpen }
+                onClose={() => this.closeItemViewer() }>
+                <div>
+                    {this.state.viewingItem.name}
+                </div>
+
+            </Drawer>
         </div>
         );
     }

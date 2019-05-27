@@ -13,26 +13,29 @@ class ItemBoard extends React.Component {
         super(props);
 
         this.state = {
-            style: "grid"
+            style: "grid",
+
         }
+    }
+
+    viewItem = (item) => {
+        this.props.openItemViewer(item);
     }
 
     renderItem = (key) => {
         return(
-        <Card className={key.id + " cell "} key={key.id} interactive={true} minimal={true}>
+        <Card className={key.id + " cell "} key={key.id} interactive="true" minimal="true" onClick={() => this.viewItem(key) }>
             <LazyLoadImage 
                 className="image"
                 alt={key.name}
                 effect="blur"
                 placeholder={<div className="bp3-skeleton"></div>}
                 src={key.image}
-                width={"calc(100% - 10px)"}
-                height={"auto"}
             />
             <p className="price">{ numToCurrency(key.price[1], "USD") }</p>
             <div className="buy-bar" style={{ display: 'flex', justifyContent: "space-between", alignItems: "baseline", width: "100%" }}>
                 <p>{ key.name }</p>
-                <Button icon="plus" minimal={true}/>
+                <Button icon="plus" minimal="true" onClick={() => this.props.addToCart(key)} />
             </div>
         </Card>
         );

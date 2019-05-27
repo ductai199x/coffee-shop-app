@@ -2,9 +2,8 @@
 	display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-	margin: 0 auto;
-    max-width: 100%;
-    min-width: 30rem;
+    max-width: 95%;
+    --columns: 4;
 }
 
 .Item-Board .cell {
@@ -14,22 +13,20 @@
 
     --width-default: 1; /* Default width of the element */
     --width: var(--width-default);
-    height: calc(100vh / 3);
     min-width: 14rem;
+    max-width: 18rem;
 
-    /* background-color: pink; */
-    border: transparent 2px solid;
-    border-radius: 8px;
-    margin: 5px;
+    margin: 20px;
     padding: 5px;
     box-shadow: none;
 
-	flex-basis: calc(var(--width) / var(--columns) * 100% - 20px);
+    flex-basis: calc(var(--width) / var(--columns) * 100%);
+    height: calc(var(--width) / var(--columns) * 100%);
 }
 
 .Item-Board .image {
     width: 100%;
-    height: auto;
+    height: 100%;
 }
 
 .Item-Board .buy-bar {
@@ -38,38 +35,34 @@
     width: "100%";
 }
 
+.Item-Board .lazy-load-image-loaded {
+    max-height: 80%
+}
+
+.Item-Board p {
+    margin: 0;
+}
+
 @media (max-width: 576px) {
 	.Item-Board {
-        --columns: 2;
-    }
-    .Item-Board .cell {
-        min-height: 13rem;
+        --columns: 1;
     }
 }
 
 @media (min-width: 576px) {
 	.Item-Board {
-        --columns: 3;
-    }
-    .Item-Board .cell {
-        min-height: 13rem;
+        --columns: 2;
     }
 }
 
 @media (max-width: 768px) {
 	.Item-Board {
-        --columns: 3;
-    }
-    .Item-Board .cell {
-        min-height: 18rem;
+        --columns: 2;
     }
 }
 
 @media (min-width: 768px) {
 	.Item-Board {
-        --columns: 4;
-    }
-    .Item-Board .cell {
-        min-height: 18rem;
+        --columns: 3;
     }
 }
