@@ -10,7 +10,6 @@
 }
 
 .Shop-Drawer img {
-    /* width: 60%; */
     max-height: 40%;
     max-width: 80%;
     margin: 1rem;
@@ -24,6 +23,12 @@
 
 @media (min-width: 768px) {
 	.bp3-drawer:not(.bp3-position-top):not(.bp3-position-bottom):not(.bp3-position-left):not(.bp3-position-right):not(.bp3-vertical) {
-        width: 60%;
+        width: 50%;
+    }
+}
+
+@media (min-width: 1100px) {
+	.bp3-drawer:not(.bp3-position-top):not(.bp3-position-bottom):not(.bp3-position-left):not(.bp3-position-right):not(.bp3-vertical) {
+        width: 40%;
     }
 }
