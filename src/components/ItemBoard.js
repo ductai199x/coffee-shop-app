@@ -35,7 +35,6 @@ class ItemBoard extends React.Component {
         return(
         <Card className={key.id + " cell "} key={key.id} interactive="true" minimal="true" onClick={() => this.viewItem(key) }>
             <LazyLoadImage 
-                beforeLoad={() => alert("lao")}
                 className="item-image"
                 alt={key.name}
                 effect="opacity"
