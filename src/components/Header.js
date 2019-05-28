@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { AnchorButton, Button, Navbar, Alignment } from '@blueprintjs/core';
+import { AnchorButton, Navbar, Alignment } from '@blueprintjs/core';
 
 class Header extends React.Component {
     constructor(props) {

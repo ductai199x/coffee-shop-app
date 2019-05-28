@@ -1,6 +1,4 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import { Button, Card } from  '@blueprintjs/core';
 import { LazyLoadImage, trackWindowScroll } from 'react-lazy-load-image-component';
 
