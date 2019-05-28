@@ -23,7 +23,7 @@ class SideMenu extends React.Component {
     renderShopTypeTarget = () => {
         return(
             <Button className="item" minimal={true}>
-                <Icon icon="shop" iconSize={40} />
+                <Icon icon="shop" iconSize={26} />
             </Button>
         );
     }
@@ -41,14 +41,14 @@ class SideMenu extends React.Component {
         return(
         <Card className="Side-Menu" >
             <Button className="item" minimal={true}>
-                <Icon icon="menu" iconSize={40} />
+                <Icon icon="menu" iconSize={26} />
             </Button>
             <Popover className="shop-type" position="right" 
                 target={ this.renderShopTypeTarget() } 
                 content={ this.renderShopTypeMenu() }
             />
             <Button className="item" minimal={true}>
-                <Icon icon="shopping-cart" iconSize={40} />
+                <Icon icon="shopping-cart" iconSize={26} />
             </Button>
         </Card>
         );

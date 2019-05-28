@@ -1,0 +1,28 @@
+@font-face {
+    font-family: 'iCielBCBurfordRustic-Light';
+    font-style: normal;
+    font-weight: lighter;
+    font-display: swap;
+    src: url('components/artifacts/iCielBCBurfordRustic-Light.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: 'iCielBCDroneRangerSerif-Regular';
+    font-style: normal;
+    font-weight: normal; /* or 400 */
+    src: url('components/artifacts/iCielBCDroneRangerSerif-Regular.otf') format("opentype");
+}
+
+@font-face {
+    font-family: 'iCielBCGrindstoneDisplay-Regular';
+    font-style: normal;
+    font-weight: normal; /* or 400 */
+    src: url('components/artifacts/iCielBCGrindstoneDisplay-Regular.otf') format("opentype");
+}
+
+@font-face {
+    font-family: 'iCielBCLivory-Bold';
+    font-style: normal;
+    font-weight: bold; /* or 700 */
+    src: url('components/artifacts/iCielBCLivory-Bold.otf') format("opentype");
+}

@@ -2,10 +2,10 @@ const defaultShopState = {
     type: "coffee",
     itemList: {
         coffee: [{
-            id: "", name: "", image: "", price: [], type: "", size: []
+            id: "", name: "", image: "", price: [], type: "", size: [], description: ""
         }],
         "brand-items": [{
-            id: "", name: "", image: "", price: [], type: "", size: []
+            id: "", name: "", image: "", price: [], type: "", size: [], description: ""
         }],
     }
 };

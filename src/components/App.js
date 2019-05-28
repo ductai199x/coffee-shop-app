@@ -52,7 +52,7 @@ class App extends React.Component {
                     <Route exact path="/" component={Home} />
                     <Route path="/shop" render={this.ShopPage} />
                 </div>
-                <pre>{ JSON.stringify(this.props.itemList[this.props.shopType], null, 4) }</pre>
+                <pre>{ JSON.stringify(this.props.itemList, null, 4) }</pre>
             </div>
         </Router>
         );

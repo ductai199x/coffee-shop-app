@@ -31,12 +31,14 @@ class Shop extends React.Component {
             <Button onClick={() => this.props.getShopItems() } text="haha" />
             <ItemBoard itemList={ this.props.itemList[this.props.shopType] } 
                 openItemViewer={ this.openItemViewer }/>
-            <Drawer isOpen={ this.state.isViewerOpen }
+            <Drawer className="Shop-Drawer"
+                isOpen={ this.state.isViewerOpen }
                 onClose={() => this.closeItemViewer() }>
                 <div>
                     {this.state.viewingItem.name}
                 </div>
-
+                <img src={ this.state.viewingItem.image }/>
+                <div><p>{ this.state.viewingItem.description }</p></div>
             </Drawer>
         </div>
         );
