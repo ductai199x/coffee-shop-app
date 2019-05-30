@@ -20,9 +20,13 @@ class SideMenu extends React.Component {
         }
     }
 
+    toggleCartOverlay = () => {
+        this.props.toggleCartOverlay();
+    }
+
     renderShopTypeTarget = () => {
         return(
-            <Button className="item" minimal={true}>
+            <Button className="Shop-Layout-Button" minimal={true}>
                 <Icon icon="shop" iconSize={26} />
             </Button>
         );
@@ -40,15 +44,17 @@ class SideMenu extends React.Component {
     render() {
         return(
         <Card className="Side-Menu" >
-            <Button className="item" minimal={true}>
+            <Button className="Menu-Button" minimal={true}>
                 <Icon icon="menu" iconSize={26} />
             </Button>
-            <Popover className="shop-type" position="right" 
+            <Popover className="Shop-Type-PopOver" position="right" 
                 target={ this.renderShopTypeTarget() } 
                 content={ this.renderShopTypeMenu() }
             />
-            <Button className="item" minimal={true}>
+            <Button className="Cart-Button" minimal={true}
+                onClick={() => this.toggleCartOverlay() }>
                 <Icon icon="shopping-cart" iconSize={26} />
+                <p style={{ textAlign: "right", color: "red", margin: 0 }}>{this.props.numInCart}</p>
             </Button>
         </Card>
         );
@@ -57,7 +63,8 @@ class SideMenu extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        shopType: state.shop.type
+        shopType: state.shop.type,
+        numInCart: state.cart.numInCart
     }
 }
 

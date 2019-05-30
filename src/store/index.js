@@ -28,6 +28,7 @@ const loadState = () => {
 };
 
 const oldState = loadState();
+console.log(oldState)
 export const store = createStore(
     combineReducers({
         shop: shopReducers,

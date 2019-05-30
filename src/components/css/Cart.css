@@ -1,0 +1,47 @@
+.Cart-Content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4%;
+    overflow: scroll;
+}
+
+.Cart-Items {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.Cart-Item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    --columns: 12; /* number of columns in the grid system */
+}
+
+.column {
+    --width: 0; /* default value */
+    background-color: pink;
+    border: LavenderBlush 2px solid;
+    border-radius: 8px;
+    flex-basis: calc(var(--width) / var(--columns) * 100%);
+}
+
+.Cart-Item .Item-Image {
+    --width: 3;
+    height: 6rem;
+    
+}
+
+.Cart-Item img {
+    max-height: 100%;
+}
+
+.Cart-Item .Item-Info {
+    --width: 6;
+}
+
+.Cart-Item .Item-Price {
+    --width: 3;
+}

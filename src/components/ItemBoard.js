@@ -33,6 +33,11 @@ class ItemBoard extends React.Component {
         }})
     }
 
+    addToCart = (e, item) => {
+        e.stopPropagation();
+        this.props.addToCart(item);
+    }
+
     renderItem = (key) => {
         
         return(
@@ -50,7 +55,7 @@ class ItemBoard extends React.Component {
             <p className="price">{ numToCurrency(key.price[1], "USD") }</p>
             <div className="buy-bar" style={{ display: 'flex', justifyContent: "space-between", alignItems: "baseline", width: "100%" }}>
                 <p>{ key.name }</p>
-                <Button icon="plus" minimal="true" onClick={() => this.props.addToCart(key)} />
+                <Button icon="plus" minimal="true" onClick={(e) => this.addToCart(e, key)} />
             </div>
         </Card>
         );

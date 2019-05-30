@@ -11,3 +11,24 @@ export const updateItemList = (itemList) => (
         payload: itemList
     }
 )
+
+export const addToCart = (item) => (
+    {
+        type: 'ADD',
+        payload: item
+    }
+)
+
+export const removeFromCart = (item) => (
+    {
+        type: 'REMOVE',
+        payload: item
+    }
+)
+
+export const updateInCart = (item) => (
+    {
+        type: 'UPDATE',
+        payload: item
+    }
+)

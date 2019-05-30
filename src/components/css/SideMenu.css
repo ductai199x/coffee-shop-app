@@ -1,6 +1,7 @@
 .Side-Menu {
     width: 10%;
     min-width: 3rem;
+    max-width: 8rem;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -8,6 +9,14 @@
     padding: 0px;
 }
 
-.Side-Menu .shop-type {
+.Side-Menu .Menu-Button {
+    margin: 0 auto;
+}
+
+.Side-Menu .Shop-Type-PopOver {
+    margin: 0 auto;
+}
+
+.Side-Menu .Cart-Button {
     margin: 0 auto;
 }

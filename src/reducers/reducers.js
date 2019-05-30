@@ -11,7 +11,9 @@ const defaultShopState = {
 };
 
 const defaultCartState = {
-
+    numInCart: 0,
+    uniqueInCart: [],
+    itemList: []
 };
 
 const defaultUserState = {
@@ -44,6 +46,36 @@ export const shopReducers = (state = defaultShopState, action) => {
 
 export const cartReducers = (state = defaultCartState, action) => {
     switch (action.type) {
+        case 'ADD':
+            console.log(action.payload.id)
+            if (state.uniqueInCart.includes(action.payload.id)) {
+                return { 
+                    ...state,
+                    itemList: state.itemList.map((content, i) => 
+                        content.id === action.payload.id ? {...content, num: content.num+1} : content
+                    )
+                }
+            } else {
+                return {
+                    ...state,
+                    uniqueInCart: [...state.uniqueInCart, action.payload.id],
+                    itemList: [...state.itemList, action.payload],
+                    numInCart: state.uniqueInCart.length + 1
+                }
+            }
+        case 'REMOVE':
+            return {
+                ...state,
+                itemList: state.itemList.filter(item => item !== action.payload),
+                numInCart: state.uniqueInCart.length + 1
+            }
+        case 'UPDATE':
+            return {
+                ...state,
+                itemList: state.itemList.map(
+                    (content, i) => content.id === action.payload.id ? action.payload : content
+                )
+            }
         default: return state;
     }
 }
