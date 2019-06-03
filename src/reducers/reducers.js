@@ -59,7 +59,9 @@ export const cartReducers = (state = defaultCartState, action) => {
                     itemList: state.itemList.map((content, i) => 
                         content.id === action.payload.id ? {...content, quantity: content.quantity + 1} : content
                     ),
-                    totalValue: state.itemList.reduce(reducer, 0)
+                    totalValue: state.itemList.map((content, i) => 
+                        content.id === action.payload.id ? {...content, quantity: content.quantity + 1} : content
+                    ).reduce(reducer, 0)
                 }
             } else {
                 return {
