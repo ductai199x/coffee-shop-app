@@ -7,7 +7,9 @@
                 "image": "https://drive.google.com/uc?export=view&id=0B4OqFeuIT6USMG5MZUR1aHlXQW8",
                 "price": [1, 2.54, 3],
                 "type": "frapuchino",
-                "size": ["S", "M", "L"],
+                "item-size": ["S", "M", "L"],
+                "choice-size": "M",
+                "extra": [],
                 "description": "this is the best thing on earth"
             },
             {
@@ -16,7 +18,9 @@
                 "image": "https://drive.google.com/uc?export=view&id=0B4OqFeuIT6USMG5MZUR1aHlXQW8",
                 "price": [2, 3, 4],
                 "type": "espresso",
-                "size": ["S", "M", "L"],
+                "item-size": ["S", "M", "L"],
+                "choice-size": "M",
+                "extra": [],
                 "description": "this is the best thing on earth"
             },
             {
@@ -25,7 +29,9 @@
                 "image": "https://drive.google.com/uc?export=view&id=0B4OqFeuIT6USMG5MZUR1aHlXQW8",
                 "price": [3, 4, 5],
                 "type": "machiato",
-                "size": ["S", "M", "L"],
+                "item-size": ["S", "M", "L"],
+                "choice-size": "M",
+                "extra": [],
                 "description": "this is the best thing on earth"
             },
             {
@@ -34,7 +40,9 @@
                 "image": "https://drive.google.com/uc?export=view&id=0B4OqFeuIT6USMG5MZUR1aHlXQW8",
                 "price": [3, 4, 5],
                 "type": "machiato",
-                "size": ["S", "M", "L"],
+                "item-size": ["S", "M", "L"],
+                "choice-size": "M",
+                "extra": [],
                 "description": "this is the best thing on earth"
             },
             {
@@ -43,7 +51,9 @@
                 "image": "https://drive.google.com/uc?export=view&id=0B4OqFeuIT6USMG5MZUR1aHlXQW8",
                 "price": [3, 4, 5],
                 "type": "machiato",
-                "size": ["S", "M", "L"],
+                "item-size": ["S", "M", "L"],
+                "choice-size": "M",
+                "extra": [],
                 "description": "this is the best thing on earth"
             },
             {
@@ -52,7 +62,9 @@
                 "image": "https://drive.google.com/uc?export=view&id=0B4OqFeuIT6USMG5MZUR1aHlXQW8",
                 "price": [3, 4, 5],
                 "type": "machiato",
-                "size": ["S", "M", "L"],
+                "item-size": ["S", "M", "L"],
+                "choice-size": "M",
+                "extra": [],
                 "description": "this is the best thing on earth"
             }
         ],
@@ -63,7 +75,9 @@
                 "image": "https://drive.google.com/uc?export=view&id=0B4OqFeuIT6USMG5MZUR1aHlXQW8",
                 "price": [1, 2, 3],
                 "type": "frapuchino",
-                "size": ["S", "M", "L"],
+                "item-size": ["S", "M", "L"],
+                "choice-size": "M",
+                "extra": [],
                 "description": "this is the best thing on earth"
             },
             {
@@ -72,7 +86,9 @@
                 "image": "https://drive.google.com/uc?export=view&id=0B4OqFeuIT6USMG5MZUR1aHlXQW8",
                 "price": [2, 3, 4],
                 "type": "espresso",
-                "size": ["S", "M", "L"],
+                "item-size": ["S", "M", "L"],
+                "choice-size": "M",
+                "extra": [],
                 "description": "this is the best thing on earth"
             },
             {
@@ -81,7 +97,9 @@
                 "image": "https://drive.google.com/uc?export=view&id=0B4OqFeuIT6USMG5MZUR1aHlXQW8",
                 "price": [3, 4, 5],
                 "type": "machiato",
-                "size": ["S", "M", "L"],
+                "item-size": ["S", "M", "L"],
+                "choice-size": "M",
+                "extra": [],
                 "description": "this is the best thing on earth"
             },
             {
@@ -90,7 +108,9 @@
                 "image": "https://drive.google.com/uc?export=view&id=0B4OqFeuIT6USMG5MZUR1aHlXQW8",
                 "price": [3, 4, 5],
                 "type": "machiato",
-                "size": ["S", "M", "L"],
+                "item-size": ["S", "M", "L"],
+                "choice-size": "M",
+                "extra": [],
                 "description": "this is the best thing on earth"
             },
             {
@@ -99,7 +119,9 @@
                 "image": "https://drive.google.com/uc?export=view&id=0B4OqFeuIT6USMG5MZUR1aHlXQW8",
                 "price": [3, 4, 5],
                 "type": "machiato",
-                "size": ["S", "M", "L"],
+                "item-size": ["S", "M", "L"],
+                "choice-size": "M",
+                "extra": [],
                 "description": "this is the best thing on earth"
             }
         ]

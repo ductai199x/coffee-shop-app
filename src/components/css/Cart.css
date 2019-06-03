@@ -15,7 +15,7 @@
 .Cart-Item {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: space-between;
     --columns: 12; /* number of columns in the grid system */
 }
@@ -42,6 +42,16 @@
     --width: 6;
 }
 
-.Cart-Item .Item-Price {
+.Cart-Item .Item-Total {
     --width: 3;
+}
+
+.Cart-Item .Item-Quantity {
+    max-width: 9rem;
+}
+
+.Cart-Content .bp3-divider {
+    width: 100%;
+    border-bottom: 0.2rem solid rgba(16, 22, 26, 0.15);
+    margin: 1rem;
 }

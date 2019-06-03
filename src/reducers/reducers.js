@@ -2,16 +2,17 @@ const defaultShopState = {
     type: "coffee",
     itemList: {
         coffee: [{
-            id: "", name: "", image: "", price: [], type: "", size: [], description: ""
+            id: "", name: "", image: "", price: [], type: "", "item-size": [], description: ""
         }],
         "brand-items": [{
-            id: "", name: "", image: "", price: [], type: "", size: [], description: ""
+            id: "", name: "", image: "", price: [], type: "", "item-size": [], description: ""
         }],
     }
 };
 
 const defaultCartState = {
     numInCart: 0,
+    totalValue: 0,
     uniqueInCart: [],
     itemList: []
 };
@@ -45,6 +46,10 @@ export const shopReducers = (state = defaultShopState, action) => {
 }
 
 export const cartReducers = (state = defaultCartState, action) => {
+    const reducer = (accumulator, item) => accumulator + getTotal(item);
+    const getTotal = (item) => {
+        return item.quantity*(item.price[item["item-size"].indexOf(item["choice-size"])])
+    }
     switch (action.type) {
         case 'ADD':
             console.log(action.payload.id)
@@ -52,29 +57,34 @@ export const cartReducers = (state = defaultCartState, action) => {
                 return { 
                     ...state,
                     itemList: state.itemList.map((content, i) => 
-                        content.id === action.payload.id ? {...content, num: content.num+1} : content
-                    )
+                        content.id === action.payload.id ? {...content, quantity: content.quantity + 1} : content
+                    ),
+                    totalValue: state.itemList.reduce(reducer, 0)
                 }
             } else {
                 return {
                     ...state,
                     uniqueInCart: [...state.uniqueInCart, action.payload.id],
                     itemList: [...state.itemList, action.payload],
-                    numInCart: state.uniqueInCart.length + 1
+                    numInCart: state.uniqueInCart.length + 1,
+                    totalValue: [...state.itemList, action.payload].reduce(reducer, 0)
                 }
             }
         case 'REMOVE':
             return {
                 ...state,
-                itemList: state.itemList.filter(item => item !== action.payload),
-                numInCart: state.uniqueInCart.length + 1
+                itemList: state.itemList.filter(item => item.id !== action.payload.id),
+                uniqueInCart: state.uniqueInCart.filter(item => item !== action.payload.id),
+                numInCart: state.numInCart - 1,
+                totalValue: state.itemList.filter(item => item.id !== action.payload.id).reduce(reducer, 0)
             }
         case 'UPDATE':
             return {
                 ...state,
                 itemList: state.itemList.map(
                     (content, i) => content.id === action.payload.id ? action.payload : content
-                )
+                ),
+                totalValue: state.itemList.reduce(reducer, 0)
             }
         default: return state;
     }

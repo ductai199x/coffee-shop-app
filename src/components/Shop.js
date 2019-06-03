@@ -40,7 +40,7 @@ class Shop extends React.Component {
     }
 
     addToCart = (item) => {
-        item['num'] = 1;
+        item['quantity'] = 1;
         this.props.addToCart(item);
     }
 
