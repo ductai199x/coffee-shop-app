@@ -43,9 +43,11 @@ const saveState = (state) => {
     try {
         // Convert the state to a JSON string 
         const serialisedState = JSON.stringify(state);
+        const currentTime = 
 
         // Save the serialised state to localStorage against the key 'app_state'
         window.localStorage.setItem('app_state', serialisedState);
+        window.localStorage.setItem('last_modified', )
     } catch (err) {
         // Log errors here, or ignore
     }
