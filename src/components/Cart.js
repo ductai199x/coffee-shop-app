@@ -33,7 +33,7 @@ class Cart extends React.Component {
     }
 
     renderItem = (key) => {
-        console.log(key.price[key["item-size"].indexOf(key["choice-size"])])
+        console.log(key.price[key["item_size"].indexOf(key["choice_size"])])
         return(
             <div className={"Cart-Item column " + key.id} key={key.id}>
                 <div className="Item-Image column">
@@ -49,7 +49,7 @@ class Cart extends React.Component {
                         onValueChange={(quantity) => this.updateInCart(quantity, key)}/>
                 </div>
                 <div className="Item-Total column">
-                    <p>{numToCurrency(key.price[key["item-size"].indexOf(key["choice-size"])]*key.quantity, "USD")}</p>
+                    <p>{numToCurrency(key.price[key["item_size"].indexOf(key["choice_size"])]*key.quantity, "USD")}</p>
                 </div>
             </div>
         );

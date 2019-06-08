@@ -1,3 +1,40 @@
 {
-    
+    "users": [
+        {
+            "name": "A B C",
+            "id": 1,
+            "age": 10,
+            "phone": "2111111111",
+            "email": "lmao1@lmao.edu",
+            "last_order": "ORDER-00001",
+            "eligible_promo": []
+        },
+        {
+            "name": "D E F",
+            "id": 2,
+            "age": 20,
+            "phone": "2111111112",
+            "email": "lmao2@lmao.edu",
+            "last_order": "ORDER-00002",
+            "eligible_promo": []
+        },
+        {
+            "name": "F G H",
+            "id": 3,
+            "age": 30,
+            "phone": "2111111113",
+            "email": "lmao3@lmao.edu",
+            "last_order": "ORDER-00003",
+            "eligible_promo": []
+        },
+        {
+            "name": "M N O",
+            "id": 4,
+            "age": 40,
+            "phone": "2111111114",
+            "email": "lmao4@lmao.edu",
+            "last_order": "ORDER-00004",
+            "eligible_promo": []
+        }
+    ]
 }

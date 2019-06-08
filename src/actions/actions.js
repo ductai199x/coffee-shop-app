@@ -32,3 +32,10 @@ export const updateInCart = (item) => (
         payload: item
     }
 )
+
+export const updateUsersData = (usersdata) => (
+    {
+        type: 'UPDATE-USERSDATA',
+        payload: usersdata
+    }
+)

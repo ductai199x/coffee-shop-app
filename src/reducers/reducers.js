@@ -2,10 +2,10 @@ const defaultShopState = {
     type: "coffee",
     itemList: {
         coffee: [{
-            id: "", name: "", image: "", price: [], type: "", "item-size": [], description: ""
+            id: "", name: "", image: "", price: [], type: "", "item_size": [], description: ""
         }],
         "brand-items": [{
-            id: "", name: "", image: "", price: [], type: "", "item-size": [], description: ""
+            id: "", name: "", image: "", price: [], type: "", "item_size": [], description: ""
         }],
     }
 };
@@ -48,7 +48,7 @@ export const shopReducers = (state = defaultShopState, action) => {
 export const cartReducers = (state = defaultCartState, action) => {
     const reducer = (accumulator, item) => accumulator + getTotal(item);
     const getTotal = (item) => {
-        return item.quantity*(item.price[item["item-size"].indexOf(item["choice-size"])])
+        return item.quantity*(item.price[item["item_size"].indexOf(item["choice_size"])])
     }
     switch (action.type) {
         case 'ADD':

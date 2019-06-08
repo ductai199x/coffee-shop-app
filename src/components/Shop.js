@@ -19,18 +19,6 @@ class Shop extends React.Component {
         }
     }
 
-    // API call to DB to get itemList
-    getShopItems = () => {
-        return new Promise((resolve, reject) => {
-            // Get mock data
-            let f = require('../mock/itemList.json')
-            // let data = JSON.parse(f)
-            // console.log(data)
-            this.props.updateItemList(f.itemList)
-            resolve()
-        })
-    }
-
     openItemViewer = (item) => {
         this.setState({ viewingItem: item, isViewerOpen: true });
     }
@@ -47,7 +35,6 @@ class Shop extends React.Component {
     render() {
         return(
         <div className="Shop">
-            <Button onClick={() => this.getShopItems() } text="haha" />
             <ItemBoard 
                 addToCart={ this.addToCart }
                 itemList={ this.props.itemList[this.props.shopType] } 
