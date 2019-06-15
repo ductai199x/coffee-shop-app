@@ -34,7 +34,7 @@ class ItemBoard extends React.Component {
     }
 
     addToCart = (e, item) => {
-        e.stopPropagation();
+        // e.stopPropagation();
         this.props.addToCart(item);
     }
 
