@@ -1,6 +1,6 @@
 {
-    "users": [
-        {
+    "users":{
+        "1": {
             "name": "A B C",
             "id": 1,
             "age": 10,
@@ -9,7 +9,7 @@
             "last_order": "ORDER-00001",
             "eligible_promo": []
         },
-        {
+        "2": {
             "name": "D E F",
             "id": 2,
             "age": 20,
@@ -18,7 +18,7 @@
             "last_order": "ORDER-00002",
             "eligible_promo": []
         },
-        {
+        "3": {
             "name": "F G H",
             "id": 3,
             "age": 30,
@@ -27,7 +27,7 @@
             "last_order": "ORDER-00003",
             "eligible_promo": []
         },
-        {
+        "4": {
             "name": "M N O",
             "id": 4,
             "age": 40,
@@ -36,5 +36,5 @@
             "last_order": "ORDER-00004",
             "eligible_promo": []
         }
-    ]
+    }
 }

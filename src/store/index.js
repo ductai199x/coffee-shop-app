@@ -2,6 +2,7 @@ import { createStore, combineReducers } from 'redux';
 import { shopReducers,
          cartReducers,
          userReducers, 
+         userDBReducers,
          authReducers,
          promoReducers } from '../reducers/reducers.js';
 
@@ -40,6 +41,7 @@ export const store = createStore(
         shop: shopReducers,
         cart: cartReducers,
         user: userReducers,
+        userdb: userDBReducers,
         auth: authReducers,
         promo: promoReducers,
     }), oldState

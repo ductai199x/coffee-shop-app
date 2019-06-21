@@ -1,7 +1,7 @@
 const defaultShopState = {
     type: "coffee",
     itemList: {
-        coffee: [{
+        "coffee": [{
             id: "", name: "", image: "", price: [], type: "", "item_size": [], description: ""
         }],
         "brand-items": [{
@@ -19,6 +19,10 @@ const defaultCartState = {
 
 const defaultUserState = {
 
+};
+
+const defaultUserDBState = {
+    users: {}
 };
 
 const defaultAuthState = {
@@ -94,6 +98,17 @@ export const cartReducers = (state = defaultCartState, action) => {
 
 export const userReducers = (state = defaultUserState, action) => {
     switch (action.type) {
+        default: return state;
+    }
+}
+
+export const userDBReducers = (state = defaultUserDBState, action) => {
+    switch (action.type) {
+        case 'UPDATE':
+            return {
+                ...state,
+                users: action.payload
+            }
         default: return state;
     }
 }

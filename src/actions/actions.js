@@ -33,9 +33,9 @@ export const updateInCart = (item) => (
     }
 )
 
-export const updateUsersData = (usersdata) => (
+export const updateUserDB = (userdb) => (
     {
-        type: 'UPDATE-USERSDATA',
-        payload: usersdata
+        type: 'UPDATE',
+        payload: userdb
     }
 )

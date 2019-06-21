@@ -9,7 +9,7 @@ import Shop from './Shop.js';
 import Cart from './Cart.js';
 import SideMenu from './SideMenu.js';
 
-import { updateItemList, updateUsersData } from '../actions/actions.js';
+import { updateItemList, updateUserDB } from '../actions/actions.js';
 
 import './css/App.css';
 
@@ -25,6 +25,7 @@ class App extends React.Component {
     componentDidMount() {
         console.log("lmao")
         this.getShopItems();
+        this.loadUserDB();
     }
 
     // API call to DB to get itemList
@@ -39,14 +40,14 @@ class App extends React.Component {
         })
     }
 
-    // API call to DB to get itemList
-    getShopItems = () => {
+    // Mock User base by loading 
+    loadUserDB = () => {
         return new Promise((resolve, reject) => {
             // Get mock data
             let f = require('../mock/users.json')
             // let data = JSON.parse(f)
             // console.log(data)
-            this.props.updateItemList(f.itemList)
+            this.props.updateUserDB(f.users)
             resolve()
         })
     }
@@ -86,7 +87,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ updateItemList, updateUsersData }, dispatch);
+    return bindActionCreators({ updateItemList, updateUserDB }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
