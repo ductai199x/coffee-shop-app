@@ -1,0 +1,17 @@
+@media (max-width: 576px) {
+	.UserAuth-Drawer {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+	.UserAuth-Drawer {
+        width: 50%;
+    }
+}
+
+@media (min-width: 1100px) {
+	.UserAuth-Drawer {
+        width: 40%;
+    }
+}

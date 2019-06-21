@@ -18,7 +18,7 @@ const defaultCartState = {
 };
 
 const defaultUserState = {
-
+    
 };
 
 const defaultUserDBState = {

@@ -8,6 +8,7 @@ import Header from './Header.js';
 import Shop from './Shop.js';
 import Cart from './Cart.js';
 import SideMenu from './SideMenu.js';
+import UserAuth from './UserAuth.js';
 
 import { updateItemList, updateUserDB } from '../actions/actions.js';
 
@@ -19,11 +20,11 @@ class App extends React.Component {
 
         this.state = {
             isCartOverlay: false,
+            isUserAuthDrawer: false,
         }
     }
 
     componentDidMount() {
-        console.log("lmao")
         this.getShopItems();
         this.loadUserDB();
     }
@@ -56,6 +57,10 @@ class App extends React.Component {
         this.setState({isCartOverlay: !this.state.isCartOverlay});
     }
 
+    toggleUserAuthDrawer = () => {
+        this.setState({isUserAuthDrawer: !this.state.isUserAuthDrawer});
+    }
+
     ShopPage = (routeProps) => {
         return ( <Shop {...routeProps} /> );
     }
@@ -64,13 +69,22 @@ class App extends React.Component {
         return (
         <Router>
             <div className="App">
-                <Header />
+                <Header toggleUserAuthDrawer={ this.toggleUserAuthDrawer } />
                 <div className="Content">
                     <SideMenu toggleCartOverlay={ this.toggleCartOverlay } />
+
                     <Cart isCartOverlay={ this.state.isCartOverlay }
                         toggleCartOverlay= { this.toggleCartOverlay }/>
+
                     <Route exact path="/" component={Home} />
                     <Route path="/shop" render={this.ShopPage} />
+
+                    <UserAuth className="UserAuth-Drawer"
+                        isOpen={ this.state.isUserAuthDrawer }
+                        onClose={() => this.toggleUserAuthDrawer() }
+                        size="100%"
+                        position="top">
+                    </UserAuth>
                 </div>
                 <pre>{ JSON.stringify(this.props.cart, null, 4) }</pre>
             </div>
@@ -83,6 +97,7 @@ const mapStateToProps = (state) => {
     return {
         shop: state.shop,
         cart: state.cart,
+        user: state.user
     }
 }
 
