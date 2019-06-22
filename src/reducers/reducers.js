@@ -2,7 +2,30 @@ const defaultShopState = {
     type: "coffee",
     itemList: {
         coffee: [{
-            id: "", name: "", image: "", price: [], type: "", "item-size": [], description: ""
+            id: "", name: "", image: "", "scale-factor": [], type: "", "item-size": [], "choice-size": "", 
+            "component-name": ["sugar"],
+            component: {
+                sugar: {
+                    amount: [], 
+                    price: 0,
+                    choice: "",
+                    modifier: ""
+                },
+                shot: {
+                    amount: [], 
+                    price: 0,
+                    choice: "",
+                    modifer: ""
+                },
+                milk: {
+                    amount: [], 
+                    price: 0,
+                    choice: "",
+                    modifier: ""
+                }
+            },
+            description: "",
+            price: []
         }],
         "brand-items": [{
             id: "", name: "", image: "", price: [], type: "", "item-size": [], description: ""

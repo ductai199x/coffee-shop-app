@@ -14,6 +14,7 @@ class Shop extends React.Component {
         super(props);
 
         this.state = {
+            price: 0,
             viewingItem: {},
             isViewerOpen: false,
         }
@@ -55,6 +56,48 @@ class Shop extends React.Component {
         })
     }
 
+    calculateTotal = (item) => {
+        var total = 0;
+        var key = item.component;
+        item["component-name"].map((name, i) => (
+            total = total + (key[name]["price"][key[name].amount.indexOf(key[name].choice)])
+        ))
+        // this.state.price = total;
+        total = total * item["scale-factor"][item["item-size"].indexOf(item["choice-size"])];
+        total = Math.ceil(total *100)/100;
+        return total
+        // this.setState({ viewingItem: item});
+    }
+
+    chooseComponentChoice = (e, componentName) => {
+        let tempItem = this.state.viewingItem;
+        tempItem.component[componentName].choice = e.target.value;
+        this.setState({ viewingItem: tempItem })
+    }
+
+    renderComponent = (key, i) => {
+        return(
+            <label className={"bp3-label-" + key}>
+                {key}
+                <div className="bp3-select">
+                    <select onChange={(e) => this.chooseComponentChoice(e, key)}>
+                    {
+                        this.state.viewingItem.component[key].amount.map((item, i) => {
+                            console.log(item);
+                            console.log(this.state.viewingItem["choice-size"]);
+                            if (item === this.state.viewingItem.component[key].choice){
+                                return <option selected="selected" key={item}>{item}</option>
+                            } else {
+                                return <option key={item}>{item} </option>
+                            }
+                        })
+                    }
+                    </select>
+                </div>
+            </label>
+        );
+    }
+
     render() {
         return(
         <div className="Shop">
@@ -63,31 +106,37 @@ class Shop extends React.Component {
                 addToCart={ this.addToCart }
                 itemList={ this.props.itemList[this.props.shopType] } 
                 openItemViewer={ this.openItemViewer }/>
-            {
-                this.state.viewingItem.price !== undefined
-                ? <Drawer className="Shop-Drawer"
-                    isOpen={ this.state.isViewerOpen }
-                    onClose={() => this.closeItemViewer() }>
-                    <div>
-                        {this.state.viewingItem.name}: 
-                        {this.state.viewingItem.price[this.state.viewingItem["item-size"].indexOf(this.state.viewingItem["choice-size"])]}
-                    </div>
-                    <img src={ this.state.viewingItem.image }/>
-                    <div><p>{ this.state.viewingItem.description }</p></div>
-                    <label className="bp3-label">
-                        Label C
-                        <div className="bp3-select">
-                        <select onChange={(e) => this.chooseSize(e)}>
-                            <option value = "S">Small</option>
-                            <option selected="selected" Value = "M">Medium</option>
-                            <option value = "L">Large</option>
-                        </select>
+                {
+                    this.state.viewingItem.id !== undefined
+                    ? <Drawer className="Shop-Drawer"
+                        isOpen={ this.state.isViewerOpen }
+                        onClose={() => this.closeItemViewer() }>
+                        <div>
+                            {this.state.viewingItem.name}: 
+                            {this.calculateTotal(this.state.viewingItem)}
                         </div>
-                    </label>
-                </Drawer>
-                : null
-            }
-            
+                        <img src={ this.state.viewingItem.image }/>
+                        <div><p>{ this.state.viewingItem.description }</p></div>
+                        <div className = "choice-container">
+                            <label className="bp3-label-1">
+                                Size
+                                <div className="bp3-select">
+                                    <select onChange={(e) => this.chooseSize(e)}>
+                                        <option value = "S">Small</option>
+                                        <option selected="selected" value = "M">Medium</option>
+                                        <option value = "L">Large</option>
+                                    </select>
+                                </div>
+                            </label>
+                            {
+                                this.state.viewingItem["component-name"].map((item, i) => (
+                                    this.renderComponent(item, i)
+                                ))
+                            }
+                        </div>
+                    </Drawer>
+                    : null
+                }
         </div>
         );
     }
