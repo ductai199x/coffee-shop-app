@@ -86,9 +86,11 @@ class Shop extends React.Component {
                             console.log(item);
                             console.log(this.state.viewingItem["choice-size"]);
                             if (item === this.state.viewingItem.component[key].choice){
-                                return <option selected="selected" key={item}>{item}</option>
+                                return <option selected="selected" value={item}>{item
+                                    + this.state.viewingItem.component[key].modifier}</option>
                             } else {
-                                return <option key={item}>{item} </option>
+                                return <option value={item}>{item 
+                                    + this.state.viewingItem.component[key].modifier} </option>
                             }
                         })
                     }
