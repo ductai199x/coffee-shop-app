@@ -39,7 +39,8 @@ class Shop extends React.Component {
         this.setState({ viewingItem: item, isViewerOpen: true });
     }
 
-    closeItemViewer = (item) => {
+    closeItemViewer = () => {
+        console.log(this.state.viewingItem);
         this.setState({ isViewerOpen: false });
     }
 

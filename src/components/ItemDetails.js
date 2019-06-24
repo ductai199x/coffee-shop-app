@@ -28,7 +28,7 @@ const ItemDetails = (WrappedComponent) => {
 
         componentWillReceiveProps(nextProps){
             if (nextProps.viewingItem !== this.state.item){
-                this.setState({item = nextProps.viewingItem});
+                this.setState({item: nextProps.viewingItem});
             }
         }
 
@@ -43,9 +43,23 @@ const ItemDetails = (WrappedComponent) => {
         }
     
         chooseComponentChoice = (e, componentName) => {
-            let tempItem = this.state.item;
-            tempItem.component[componentName].choice = e.target.value;
-            this.setState({ item: tempItem })
+            // let tempItem = this.state.item;
+            // tempItem.component[componentName].choice = e.target.value;
+            // this.setState({ item: tempItem })
+
+            this.setState({
+                ...this.state,
+                item: {
+                    ...this.state.item,
+                    component: {
+                        ...this.state.item.component,
+                        [componentName]: {
+                            ...this.state.item.component[componentName],
+                            choice: e.target.value
+                        }
+                    }
+                }
+            })
         }
     
         renderComponent = (key, i) => {
