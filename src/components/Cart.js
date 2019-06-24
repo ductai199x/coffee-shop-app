@@ -58,6 +58,7 @@ class Cart extends React.Component {
     render() {
         return(
         <Drawer className="Cart-Drawer"
+            position="left"
             isOpen={ this.props.isCartOverlay }
             onClose={() => this.props.toggleCartOverlay() }>
             <div className="Cart-Content" vertical="true">
