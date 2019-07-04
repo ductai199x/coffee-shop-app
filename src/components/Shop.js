@@ -29,7 +29,7 @@ class Shop extends React.Component {
             // Get mock data
             let f = require('../mock/itemList.json')
             // let data = JSON.parse(f)
-            // console.log(data)
+            // 
             this.props.updateItemList(f.itemList)
             resolve()
         })
@@ -40,13 +40,15 @@ class Shop extends React.Component {
     }
 
     closeItemViewer = () => {
-        console.log(this.state.viewingItem);
+        // 
         this.setState({ isViewerOpen: false });
     }
 
     addToCart = (item) => {
+        // 
         item['quantity'] = 1;
         this.props.addToCart(item);
+        // 
     }
 
     render() {
@@ -58,6 +60,7 @@ class Shop extends React.Component {
                 itemList={ this.props.itemList[this.props.shopType] } 
                 openItemViewer={ this.openItemViewer }/>
             <ItemDetails
+                addToCart={ this.addToCart }
                 viewingItem = { this.state.viewingItem }
                 isViewerOpen = { this.state.isViewerOpen }
                 closeItemViewer = { this.closeItemViewer }/>

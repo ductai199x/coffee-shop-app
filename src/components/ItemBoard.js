@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Card } from  '@blueprintjs/core';
 import { LazyLoadImage, trackWindowScroll } from 'react-lazy-load-image-component';
 
-import { calculateTotal } from './Helper.js';
+import { numToCurrency, calculateTotal } from './Helper.js';
 
 import './css/ItemBoard.css';
 
@@ -35,7 +35,11 @@ class ItemBoard extends React.Component {
 
     addToCart = (e, item) => {
         e.stopPropagation();
+        
+
         this.props.addToCart(item);
+        
+
     }
 
     renderItem = (key) => {
@@ -52,7 +56,7 @@ class ItemBoard extends React.Component {
                 wrapperClassName="Item-Lazy-Image"
             />
             <div className="Item-Image-Placeholder bp3-skeleton" style={{display: this.state.isPlaceHolder[key.id]}}></div>
-            <p className="price">{calculateTotal(key)}</p>
+            <p className="price">{numToCurrency(calculateTotal(key), "USD")}</p>
             <div className="buy-bar" style={{ display: 'flex', justifyContent: "space-between", alignItems: "baseline", width: "100%" }}>
                 <p>{ key.name }</p>
                 <Button icon="plus" minimal="true" onClick={(e) => this.addToCart(e, key)} />

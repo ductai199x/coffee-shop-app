@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Drawer, Button } from  '@blueprintjs/core';
 
-import { calculateTotal } from './Helper.js';
+import { numToCurrency, calculateTotal } from './Helper.js';
 
 const ItemDetails = (WrappedComponent) => {
     return class HOC extends React.Component {
@@ -42,6 +42,13 @@ const ItemDetails = (WrappedComponent) => {
             })
         }
     
+        addToCart = (e, item) => {
+            e.stopPropagation();
+    
+            this.props.addToCart(item);
+    
+        }
+
         chooseComponentChoice = (e, componentName) => {
             // let tempItem = this.state.item;
             // tempItem.component[componentName].choice = e.target.value;
@@ -95,7 +102,7 @@ const ItemDetails = (WrappedComponent) => {
                     onClose={() => this.props.closeItemViewer() }>
                     <div>
                         {this.state.item.name}: 
-                        {calculateTotal(this.state.item)}
+                        {numToCurrency(calculateTotal(this.state.item), "USD")}
                     </div>
                     <img src={ this.state.item.image }/>
                     <div><p>{ this.state.item.description }</p></div>
@@ -111,10 +118,13 @@ const ItemDetails = (WrappedComponent) => {
                             </div>
                         </label>
                         {
-                            this.state.item["component-name"].map((item, i) => (
-                                this.renderComponent(item, i)
+                            this.state.item["component-name"].map((key, i) => (
+                                this.renderComponent(key, i)
                             ))
                         }
+                        <div className="buy-bar" style={{ display: 'flex', justifyContent: "space-between", alignItems: "baseline", width: "100%" }}>
+                            <Button icon="plus" minimal="true" onClick={(e) => this.addToCart(e, this.state.item)} />
+                        </div>
                     </div>
                 </WrappedComponent>
                 );

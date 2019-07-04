@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Drawer, Divider, NumericInput, Intent, Alert, Toaster, Button } from  '@blueprintjs/core';
 
-import { numToCurrency } from './Helper.js';
+import { numToCurrency, calculateTotal } from './Helper.js';
 import { updateInCart, removeFromCart } from '../actions/actions.js';
 
 import './css/Cart.css';
@@ -33,26 +33,31 @@ class Cart extends React.Component {
     }
 
     renderItem = (key) => {
-        console.log(key.price[key["item-size"].indexOf(key["choice-size"])])
-        return(
-            <div className={"Cart-Item column " + key.id} key={key.id}>
-                <div className="Item-Image column">
-                    <img src={key.image} />
+        if (key["item-size"] === undefined)
+            return null;
+        else
+            return(
+                <div className={"Cart-Item column " + key.id} key={key.id}>
+                    <div className="Item-Image column">
+                        <img src={key.image} />
+                    </div>
+                    <div className="Item-Info column">
+                        <p>{key.name}</p>
+                        <p>{key.description}</p>
+                        <NumericInput className="Item-Quantity" fill="true"
+                            min={0}
+                            max={20}
+                            value={key.quantity} 
+                            onValueChange={(quantity) => this.updateInCart(quantity, key)}/>
+                    </div>
+                    <div className="Item-Image column">
+                        <p>{key.uuid}</p>
+                    </div>
+                    <div className="Item-Total column">
+                        <p>{numToCurrency(calculateTotal(key)*key.quantity, "USD")}</p>
+                    </div>
                 </div>
-                <div className="Item-Info column">
-                    <p>{key.name}</p>
-                    <p>{key.description}</p>
-                    <NumericInput className="Item-Quantity" fill="true"
-                        min={0}
-                        max={20}
-                        value={key.quantity} 
-                        onValueChange={(quantity) => this.updateInCart(quantity, key)}/>
-                </div>
-                <div className="Item-Total column">
-                    <p>{numToCurrency(key.price[key["item-size"].indexOf(key["choice-size"])]*key.quantity, "USD")}</p>
-                </div>
-            </div>
-        );
+            );
     }
 
     render() {

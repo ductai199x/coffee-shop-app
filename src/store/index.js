@@ -20,7 +20,7 @@ const loadState = () => {
         // If no data is saved, return undefined
         if (!serialisedState) return undefined;
 
-        console.log(currentTime - lastAccessedTime);
+        
 
         if (currentTime - lastAccessedTime > expireTime) return undefined;
 
