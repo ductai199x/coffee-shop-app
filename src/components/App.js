@@ -79,7 +79,7 @@ class App extends React.Component {
                     <Route exact path="/" component={Home} />
                     <Route path="/shop" render={this.ShopPage} />
 
-                    <UserAuth className="UserAuth-Drawer"
+                    <UserAuth 
                         isOpen={ this.state.isUserAuthDrawer }
                         onClose={() => this.toggleUserAuthDrawer() }
                         size="100%"
