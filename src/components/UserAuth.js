@@ -27,27 +27,26 @@ const UserAuth = (WrappedComponent) => {
                         resolve(this.props.userdb.users[key]);
                     }
                 });
-                console.log("??")
                 reject("user not found");
             })
         }
 
         // Mocking Loging in User API call
         handleLogin = (e) => {
-            console.log(e)
             e.preventDefault();
             const email = e.target.email.value;
             const password = e.target.password.value;
             this.attemptLogin(email, password)
                 .then((data) => {
-                    console.log(data);
                     this.props.loginUser(data);
-                    return;
                 })
                 .catch((e) => {
                     console.log(e)
                 });
-            
+        }
+
+        handleLogout = (e) => {
+            this.props.logoutUser()
         }
 
         handleLockClick = () => {
@@ -99,7 +98,12 @@ const UserAuth = (WrappedComponent) => {
 
         renderLogout = () => {
             return(
-                <div></div>
+                <div className="Logout-Panel">
+                    <div className="goodbye">
+                        Don't worry, all your information is safe with us. Please come back soon!
+                    </div>
+                    <Button text="Logout" icon="key" onClick={(e) => this.handleLogout(e)}/>
+                </div>
             )
         }
 
@@ -133,4 +137,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 // export default ;
-export default connect(mapStateToProps, null)(UserAuth(Drawer));
+export default connect(mapStateToProps, mapDispatchToProps)(UserAuth(Drawer));

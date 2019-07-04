@@ -99,15 +99,9 @@ export const cartReducers = (state = defaultCartState, action) => {
 export const userReducers = (state = defaultUserState, action) => {
     switch (action.type) {
         case 'LOGIN':
-            return {
-                ...state,
-                user: action.payload
-            }
+            return action.payload
         case 'LOGOUT':
-            return {
-                ...state,
-                user: {}
-            }
+            return {}
         default: return state;
     }
 }
