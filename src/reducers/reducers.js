@@ -1,8 +1,36 @@
+import { numToCurrency, calculateTotal, generateUuid, calculateTotalList } from "../components/Helper";
+
 const defaultShopState = {
     type: "coffee",
     itemList: {
-        "coffee": [{
-            id: "", name: "", image: "", price: [], type: "", "item_size": [], description: ""
+        coffee: [{
+            uuid: "", id: "", name: "", image: "", "scale-factor": [], type: "", "item-size": [], "choice-size": "", 
+            "component-name": ["sugar", "shot", "milk"],
+            component: {
+                sugar: {
+                    amount: [], 
+                    price: 0,
+                    choice: "",
+                    modifier: "",
+                    default: ""
+                },
+                shot: {
+                    amount: [], 
+                    price: 0,
+                    choice: "",
+                    modifer: "",
+                    default: ""
+                },
+                milk: {
+                    amount: [], 
+                    price: 0,
+                    choice: "",
+                    modifier: "",
+                    default: ""
+                }
+            },
+            description: "",
+            price: []
         }],
         "brand-items": [{
             id: "", name: "", image: "", price: [], type: "", "item_size": [], description: ""
@@ -52,44 +80,48 @@ export const shopReducers = (state = defaultShopState, action) => {
 export const cartReducers = (state = defaultCartState, action) => {
     const reducer = (accumulator, item) => accumulator + getTotal(item);
     const getTotal = (item) => {
-        return item.quantity*(item.price[item["item_size"].indexOf(item["choice_size"])])
+        return item["quantity"]*calculateTotal(item)
     }
     switch (action.type) {
         case 'ADD':
-            console.log(action.payload.id)
-            if (state.uniqueInCart.includes(action.payload.id)) {
+            generateUuid(action.payload)
+            if (state.uniqueInCart.includes(action.payload.uuid)) {
                 return { 
                     ...state,
+                    numInCart: parseInt(state.numInCart) + 1,
                     itemList: state.itemList.map((content, i) => 
-                        content.id === action.payload.id ? {...content, quantity: content.quantity + 1} : content
+                        content.uuid === action.payload.uuid ? {...content, quantity: content.quantity + 1} : content
                     ),
                     totalValue: state.itemList.map((content, i) => 
-                        content.id === action.payload.id ? {...content, quantity: content.quantity + 1} : content
+                        content.uuid === action.payload.uuid ? {...content, quantity: content.quantity + 1} : content
                     ).reduce(reducer, 0)
                 }
             } else {
                 return {
                     ...state,
-                    uniqueInCart: [...state.uniqueInCart, action.payload.id],
+                    uniqueInCart: [...state.uniqueInCart, action.payload.uuid],
                     itemList: [...state.itemList, action.payload],
-                    numInCart: state.uniqueInCart.length + 1,
+                    numInCart: parseInt(state.numInCart) + 1,
                     totalValue: [...state.itemList, action.payload].reduce(reducer, 0)
                 }
             }
         case 'REMOVE':
             return {
                 ...state,
-                itemList: state.itemList.filter(item => item.id !== action.payload.id),
-                uniqueInCart: state.uniqueInCart.filter(item => item !== action.payload.id),
-                numInCart: state.numInCart - 1,
-                totalValue: state.itemList.filter(item => item.id !== action.payload.id).reduce(reducer, 0)
+                itemList: state.itemList.filter(item => item.uuid !== action.payload.uuid),
+                uniqueInCart: state.uniqueInCart.filter(item => item !== action.payload.uuid),
+                numInCart: parseInt(state.numInCart) - 1,
+                totalValue: state.itemList.filter(item => item.uuid !== action.payload.uuid).reduce(reducer, 0)
             }
         case 'UPDATE':
+            let temp = 0;
+            let total = 0;
             return {
                 ...state,
                 itemList: state.itemList.map(
-                    (content, i) => content.id === action.payload.id ? action.payload : content
+                    (content, i) => content.uuid === action.payload.uuid ? action.payload : content
                 ),
+                numInCart: calculateTotalList(state.itemList),
                 totalValue: state.itemList.reduce(reducer, 0)
             }
         default: return state;

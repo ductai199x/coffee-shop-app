@@ -15,6 +15,26 @@
     margin: 1rem;
 }
 
+.choice-container {
+    flex-direction: column;
+    max-width: 200px;
+    position: relative;
+    display: inline-block;
+}
+label {
+    display: block;
+    white-space: nowrap;
+    text-align: left;
+    line-height: 26px;
+    margin-bottom: 10px;
+    
+}
+  
+select {
+    margin-left: 10px;
+    width: 100%;
+}
+
 @media (max-width: 576px) {
 	.bp3-drawer:not(.bp3-position-top):not(.bp3-position-bottom):not(.bp3-position-left):not(.bp3-position-right):not(.bp3-vertical) {
         width: 80%;
@@ -32,3 +52,4 @@
         width: 40%;
     }
 }
+
