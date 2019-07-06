@@ -2,6 +2,7 @@ import { createStore, combineReducers } from 'redux';
 import { shopReducers,
          cartReducers,
          userReducers, 
+         userDBReducers,
          authReducers,
          promoReducers } from '../reducers/reducers.js';
 
@@ -20,7 +21,7 @@ const loadState = () => {
         // If no data is saved, return undefined
         if (!serialisedState) return undefined;
 
-        console.log(currentTime - lastAccessedTime);
+        
 
         if (currentTime - lastAccessedTime > expireTime) return undefined;
 
@@ -40,6 +41,7 @@ export const store = createStore(
         shop: shopReducers,
         cart: cartReducers,
         user: userReducers,
+        userdb: userDBReducers,
         auth: authReducers,
         promo: promoReducers,
     }), oldState

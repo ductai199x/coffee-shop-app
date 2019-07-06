@@ -20,6 +20,7 @@ class Header extends React.Component {
                     <Navbar.Divider />
                     <AnchorButton icon="home" text="Home" href="/" />
                     <AnchorButton icon="shop" text="Shop" href="/shop" />
+                    <AnchorButton icon="user" text="Log In" onClick={() => this.props.toggleUserAuthDrawer()} />
                 </Navbar.Group>
             </Navbar>
         </div>
