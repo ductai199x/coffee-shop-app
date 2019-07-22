@@ -23,20 +23,21 @@ class Shop extends React.Component {
         }
     }
 
+    componentDidMount() {
+        this.props.getShopItems();
+    }
+
     openItemViewer = (item) => {
         this.setState({ viewingItem: item, isViewerOpen: true });
     }
 
     closeItemViewer = () => {
-        // 
         this.setState({ isViewerOpen: false });
     }
 
     addToCart = (item) => {
-        // 
         item['quantity'] = 1;
         this.props.addToCart(item);
-        // 
     }
 
     render() {

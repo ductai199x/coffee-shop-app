@@ -2,6 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import firebase from './Firebase.js';
 
 import Home from './Home.js';
 import Header from './Header.js';
@@ -24,6 +25,10 @@ class App extends React.Component {
         }
     }
 
+    firestore = firebase.firestore();
+    shopdb = this.firestore.collection("shop");
+    usersdb = this.firestore.collection('usersdb');
+
     componentDidMount() {
         this.getShopItems();
         this.loadUserDB();
@@ -32,12 +37,23 @@ class App extends React.Component {
     // API call to DB to get itemList
     getShopItems = () => {
         return new Promise((resolve, reject) => {
-            // Get mock data
-            let f = require('../mock/itemList.json')
-            // let data = JSON.parse(f)
-            // console.log(data)
-            this.props.updateItemList(f.itemList)
-            resolve()
+            this.shopdb.onSnapshot((querySnapshot) => {
+                let itemList = { coffee: [], "brand-items": [] };
+                querySnapshot.forEach((doc) => {
+                    if (doc.id == "coffee") {
+                        Object.keys(doc.data()).map((item, i) => {
+                            itemList["coffee"].push(doc.data()[item])
+                        })
+                    }
+                    if (doc.id == "brand-items") {
+                        Object.keys(doc.data()).map((item, i) => {
+                            itemList["brand-items"].push(doc.data()[item])
+                        })
+                    }
+                });
+                this.props.updateItemList(itemList);
+                resolve();
+            });
         })
     }
 
@@ -54,15 +70,19 @@ class App extends React.Component {
     }
 
     toggleCartOverlay = () => {
-        this.setState({isCartOverlay: !this.state.isCartOverlay});
+        this.setState({ isCartOverlay: !this.state.isCartOverlay });
     }
 
     toggleUserAuthDrawer = () => {
-        this.setState({isUserAuthDrawer: !this.state.isUserAuthDrawer});
+        this.setState({ isUserAuthDrawer: !this.state.isUserAuthDrawer });
+    }
+
+    HomePage = (routeProps) => {
+        return ( <Home {...routeProps} getShopItems={this.getShopItems}/> );
     }
 
     ShopPage = (routeProps) => {
-        return ( <Shop {...routeProps} /> );
+        return ( <Shop {...routeProps} getShopItems={this.getShopItems}/> );
     }
 
     render() {
@@ -76,7 +96,7 @@ class App extends React.Component {
                     <Cart isCartOverlay={ this.state.isCartOverlay }
                         toggleCartOverlay= { this.toggleCartOverlay }/>
 
-                    <Route exact path="/" component={Home} />
+                    <Route exact path="/" render={this.HomePage} />
                     <Route path="/shop" render={this.ShopPage} />
 
                     <UserAuth 

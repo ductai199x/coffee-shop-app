@@ -15,17 +15,6 @@ const ItemDetails = (WrappedComponent) => {
             }
         }
 
-        // shouldComponentUpdate(nextProps, nextState) {
-        //     if (this.state.item !== nextProps.viewingItem) {
-        //         let tempItem = Object.assign({}, nextProps.viewingItem);
-        //         // this.setState({ nextState.item: tempItem });
-        //         this.state.item = tempItem;
-        //         return true;
-        //     } else{
-        //         return false;
-        //     }
-        // }
-
         componentWillReceiveProps(nextProps){
             if (nextProps.viewingItem !== this.state.item){
                 this.setState({item: nextProps.viewingItem});
@@ -50,10 +39,6 @@ const ItemDetails = (WrappedComponent) => {
         }
 
         chooseComponentChoice = (e, componentName) => {
-            // let tempItem = this.state.item;
-            // tempItem.component[componentName].choice = e.target.value;
-            // this.setState({ item: tempItem })
-
             this.setState({
                 ...this.state,
                 item: {
@@ -71,19 +56,16 @@ const ItemDetails = (WrappedComponent) => {
     
         renderComponent = (key, i) => {
             return(
-                <label className={"bp3-label-" + key}>
+                <label className={"bp3-label-" + key} key={key}>
                     {key}
                     <div className="bp3-select">
-                        <select onChange={(e) => this.chooseComponentChoice(e, key)}>
+                        <select defaultValue={this.state.item.component[key].choice}
+                            onChange={(e) => this.chooseComponentChoice(e, key)}>
                         {
                             this.state.item.component[key].amount.map((item, i) => {
-                                if (item === this.state.item.component[key].choice){
-                                    return <option selected="selected" value={item}>{item
-                                        + this.state.item.component[key].modifier}</option>
-                                } else {
-                                    return <option value={item}>{item 
-                                        + this.state.item.component[key].modifier} </option>
-                                }
+                                    return <option value={item} key={item}>
+                                    {item + this.state.item.component[key].modifier}
+                                    </option>
                             })
                         }
                         </select>
@@ -110,9 +92,9 @@ const ItemDetails = (WrappedComponent) => {
                         <label className="bp3-label-1">
                             Size
                             <div className="bp3-select">
-                                <select onChange={(e) => this.chooseSize(e)}>
+                                <select defaultValue="M" onChange={(e) => this.chooseSize(e)}>
                                     <option value = "S">Small</option>
-                                    <option selected="selected" value = "M">Medium</option>
+                                    <option value = "M">Medium</option>
                                     <option value = "L">Large</option>
                                 </select>
                             </div>

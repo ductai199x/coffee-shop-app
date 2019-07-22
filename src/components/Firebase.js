@@ -15,10 +15,5 @@ const config = {
     appId: "1:793719200651:web:a6c4cbc83e26128b"
 };
 
-class Firebase {
-    constructor() {
-        app.initializeApp(config);
-    }
-}
-  
-export default Firebase;
+firebase.initializeApp(config);
+export default firebase;

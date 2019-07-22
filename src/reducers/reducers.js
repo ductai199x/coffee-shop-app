@@ -33,7 +33,33 @@ const defaultShopState = {
             price: []
         }],
         "brand-items": [{
-            id: "", name: "", image: "", price: [], type: "", "item_size": [], description: ""
+            uuid: "", id: "", name: "", image: "", "scale-factor": [], type: "", "item-size": [], "choice-size": "", 
+            "component-name": ["sugar", "shot", "milk"],
+            component: {
+                sugar: {
+                    amount: [], 
+                    price: 0,
+                    choice: "",
+                    modifier: "",
+                    default: ""
+                },
+                shot: {
+                    amount: [], 
+                    price: 0,
+                    choice: "",
+                    modifer: "",
+                    default: ""
+                },
+                milk: {
+                    amount: [], 
+                    price: 0,
+                    choice: "",
+                    modifier: "",
+                    default: ""
+                }
+            },
+            description: "",
+            price: []
         }],
     }
 };

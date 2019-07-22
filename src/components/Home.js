@@ -11,6 +11,10 @@ class Home extends React.Component {
         }
     }
 
+    componentDidMount() {
+        this.props.getShopItems();
+    }
+
     render() {
         return(
         <div>
