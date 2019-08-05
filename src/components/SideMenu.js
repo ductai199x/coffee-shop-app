@@ -26,8 +26,8 @@ class SideMenu extends React.Component {
 
     renderShopTypeTarget = () => {
         return(
-            <Button className="Shop-Layout-Button" minimal={true}>
-                <Icon icon="shop" iconSize={26} />
+            <Button className="Shop-Layout-Button" minimal={ true }>
+                <Icon icon="shop" iconSize={ 26 } />
             </Button>
         );
     }
@@ -35,8 +35,8 @@ class SideMenu extends React.Component {
     renderShopTypeMenu = () => {
         return(
             <Menu>
-                <MenuItem text="coffee" onClick={() => this.props.updateShopType("coffee")} />
-                <MenuItem text="brand items" onClick={() => this.props.updateShopType("brand-items")}/>
+                <MenuItem text="coffee" onClick={ () => this.props.updateShopType("coffee") } />
+                <MenuItem text="brand items" onClick={ () => this.props.updateShopType("brand-items") }/>
             </Menu>
         );
     }
@@ -44,17 +44,17 @@ class SideMenu extends React.Component {
     render() {
         return(
         <Card className="Side-Menu" >
-            <Button className="Menu-Button" minimal={true}>
-                <Icon icon="menu" iconSize={26} />
+            <Button className="Menu-Button" minimal={ true }>
+                <Icon icon="menu" iconSize={ 26 } />
             </Button>
             <Popover className="Shop-Type-PopOver" position="right" 
                 target={ this.renderShopTypeTarget() } 
                 content={ this.renderShopTypeMenu() }
             />
-            <Button className="Cart-Button" minimal={true}
-                onClick={() => this.toggleCartOverlay() }>
-                <Icon icon="shopping-cart" iconSize={26} />
-                <p style={{ textAlign: "right", color: "red", margin: 0 }}>{this.props.numInCart}</p>
+            <Button className="Cart-Button" minimal={ true }
+                onClick={ () => this.toggleCartOverlay() }>
+                <Icon icon="shopping-cart" iconSize={ 26 } />
+                <p style={{ textAlign: "right", color: "red", margin: 0 }}>{ this.props.numInCart }</p>
             </Button>
         </Card>
         );

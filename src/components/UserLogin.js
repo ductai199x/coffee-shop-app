@@ -1,11 +1,12 @@
 import React from 'react';
-import { Drawer, 
+import {
         Button, 
         AnchorButton,
         FormGroup, 
         InputGroup, 
         Tooltip, 
-        Intent } from '@blueprintjs/core';
+        Intent 
+    } from '@blueprintjs/core';
 
 class UserLogin extends React.Component {
     constructor(props) {
@@ -25,19 +26,19 @@ class UserLogin extends React.Component {
 
     render() {
         const lockButton = (
-            <Tooltip content={`${this.state.showPassword ? "Hide" : "Show"} Password`} disabled={this.state.disabled}>
+            <Tooltip content={ `${this.state.showPassword ? "Hide" : "Show"} Password` } disabled={ this.state.disabled }>
                 <Button
-                    disabled={this.state.disabled}
-                    icon={this.state.showPassword ? "unlock" : "lock"}
-                    intent={Intent.WARNING}
-                    minimal={true}
-                    onClick={this.handleLockClick}
+                    disabled={ this.state.disabled }
+                    icon={ this.state.showPassword ? "unlock" : "lock" }
+                    intent={ Intent.WARNING }
+                    minimal={ true }
+                    onClick={ this.handleLockClick }
                 />
             </Tooltip>
         );
         return(
             <div className="Login-Panel">
-                <form className="Login-Form" onSubmit={(e) => this.props.handleLogin(e)}>
+                <form className="Login-Form" onSubmit={ (e) => this.props.handleLoginUserPwd(e) }>
                     <div className="greetings">
                         Good morning! Let's log in so that we can create the best experience for you!
                     </div>
@@ -55,16 +56,16 @@ class UserLogin extends React.Component {
                         labelFor="login-password">
                         <InputGroup id="login-password"
                             required
-                            disabled={this.state.disabled}
+                            disabled={ this.state.disabled }
                             placeholder="Enter your password..."
                             name="password"
-                            rightElement={lockButton}
-                            type={this.state.showPassword ? "text" : "password"}/>
+                            rightElement={ lockButton }
+                            type={ this.state.showPassword ? "text" : "password" }/>
                     </FormGroup>
                     <Button text="Login" icon="key" type="submit"/>
                 </form>
                 <AnchorButton text="Forgot Password" minimal="true"/>
-                <AnchorButton text="Register New User" minimal="true" onClick={this.props.toggleUserRegistration}/>
+                <AnchorButton text="Register New User" minimal="true" onClick={ this.props.toggleUserRegistration }/>
             </div>
         )
     }

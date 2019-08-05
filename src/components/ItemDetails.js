@@ -1,5 +1,5 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Drawer, Button } from  '@blueprintjs/core';
 
@@ -17,7 +17,7 @@ const ItemDetails = (WrappedComponent) => {
 
         componentWillReceiveProps(nextProps){
             if (nextProps.viewingItem !== this.state.item){
-                this.setState({item: nextProps.viewingItem});
+                this.setState({ item: nextProps.viewingItem });
             }
         }
 
@@ -56,15 +56,15 @@ const ItemDetails = (WrappedComponent) => {
     
         renderComponent = (key, i) => {
             return(
-                <label className={"bp3-label-" + key} key={key}>
-                    {key}
+                <label className={ "bp3-label-" + key } key={ key }>
+                    { key }
                     <div className="bp3-select">
-                        <select defaultValue={this.state.item.component[key].choice}
-                            onChange={(e) => this.chooseComponentChoice(e, key)}>
+                        <select defaultValue={ this.state.item.component[key].choice }
+                            onChange={ (e) => this.chooseComponentChoice(e, key) }>
                         {
                             this.state.item.component[key].amount.map((item, i) => {
-                                    return <option value={item} key={item}>
-                                    {item + this.state.item.component[key].modifier}
+                                    return <option value={ item } key={ item }>
+                                    { item + this.state.item.component[key].modifier }
                                     </option>
                             })
                         }
@@ -81,18 +81,18 @@ const ItemDetails = (WrappedComponent) => {
                 return(
                 <WrappedComponent className="Shop-Drawer"
                     isOpen={ this.props.isViewerOpen }
-                    onClose={() => this.props.closeItemViewer() }>
+                    onClose={ () => this.props.closeItemViewer() }>
                     <div>
                         {this.state.item.name}: 
                         {numToCurrency(calculateTotal(this.state.item), "USD")}
                     </div>
-                    <img src={ this.state.item.image }/>
+                    <img src={ this.state.item.image } alt={ this.state.item.name }/>
                     <div><p>{ this.state.item.description }</p></div>
                     <div className = "choice-container">
                         <label className="bp3-label-1">
                             Size
                             <div className="bp3-select">
-                                <select defaultValue="M" onChange={(e) => this.chooseSize(e)}>
+                                <select defaultValue="M" onChange={ (e) => this.chooseSize(e) }>
                                     <option value = "S">Small</option>
                                     <option value = "M">Medium</option>
                                     <option value = "L">Large</option>
@@ -105,7 +105,7 @@ const ItemDetails = (WrappedComponent) => {
                             ))
                         }
                         <div className="buy-bar" style={{ display: 'flex', justifyContent: "space-between", alignItems: "baseline", width: "100%" }}>
-                            <Button icon="plus" minimal="true" onClick={(e) => this.addToCart(e, this.state.item)} />
+                            <Button icon="plus" minimal="true" onClick={ (e) => this.addToCart(e, this.state.item) } />
                         </div>
                     </div>
                 </WrappedComponent>

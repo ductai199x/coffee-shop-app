@@ -39,7 +39,6 @@ export const calculateTotalList = (itemList) => {
         if (content["quantity"] !== undefined){
             total = parseInt(total) + parseInt(content["quantity"]);
         }
-        // 
-     })
+    })
     return total;  
 }

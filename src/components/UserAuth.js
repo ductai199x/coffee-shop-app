@@ -1,13 +1,15 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Drawer, 
-         Button, 
-         AnchorButton,
-         FormGroup, 
-         InputGroup, 
-         Tooltip, 
-         Intent } from '@blueprintjs/core';
+import { 
+    Drawer, 
+    Button, 
+    // AnchorButton,
+    // FormGroup, 
+    // InputGroup, 
+    // Tooltip, 
+    // Intent 
+} from '@blueprintjs/core';
 
 import { loginUser, logoutUser } from '../actions/actions.js';
 
@@ -33,7 +35,7 @@ const UserAuth = (WrappedComponent) => {
         }
 
         auth = firebase.auth();
-        provider = new firebase.auth.GoogleAuthProvider();
+        googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
         componentWillReceiveProps(nextProps) {
             if (nextProps.user.id === undefined) {
@@ -41,17 +43,6 @@ const UserAuth = (WrappedComponent) => {
             } else {
                 this.setState({showLogin: false, showLogout: true, showRegister: false, showForgotPwd: false});
             }
-        }
-
-        attemptLogin = (email, password) => {
-            return new Promise((resolve, reject) => {
-                Object.keys(this.props.userdb.users).map((key) => {
-                    if (email === this.props.userdb.users[key].email) {
-                        resolve(this.props.userdb.users[key]);
-                    }
-                });
-                reject("user not found");
-            })
         }
 
         toggleUserRegistration = () => {
@@ -63,37 +54,43 @@ const UserAuth = (WrappedComponent) => {
             });
         }
 
-        // Mocking Loging in User API call
-        handleLogin = (e) => {
+        handleLoginUserPwd = (e) => {
             e.preventDefault();
-            // const email = e.target.email.value;
-            // const password = e.target.password.value;
-            // this.attemptLogin(email, password)
-            //     .then((data) => {
-            //         
-            //     })
-            //     .catch((e) => {
-            //         console.log(e)
-            //     });
-            this.auth.signInWithPopup(this.provider).then(function(result) {
+            console.log()
+            this.auth.signInWithEmailAndPassword(e.target.email.value, e.target.password.value).then((result) => {
+                // The signed-in user info.
+                const user = result.user;
+
+                console.log(user);
+                this.props.loginUser(user);
+            }).catch((error) => {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                var email = error.email;
+                var credential = error.credential;
+                console.log(errorMessage, errorCode, email, credential)
+            });
+        }
+
+        handleLoginGoogle = (e) => {
+            e.preventDefault();
+            this.auth.signInWithPopup(this.provider).then((result) => {
                 // This gives you a Google Access Token. You can use it to access the Google API.
                 const token = result.credential.accessToken;
                 // The signed-in user info.
                 const user = result.user;
-                // ...
+
                 console.log(user);
                 this.props.loginUser(user);
-            }).catch(function(error) {
+            }).catch((error) => {
                 // Handle Errors here.
                 var errorCode = error.code;
                 var errorMessage = error.message;
-                // The email of the user's account used.
                 var email = error.email;
-                // The firebase.auth.AuthCredential type that was used.
                 var credential = error.credential;
-                // ...
+                console.log(errorMessage, errorCode, email, credential)
             });
-              
         }
 
         handleLogout = (e) => {
@@ -109,7 +106,6 @@ const UserAuth = (WrappedComponent) => {
             e.preventDefault();
             const email = e.target.email.value;
             const password = e.target.password.value;
-
         }
 
         renderLogin = () => {
@@ -117,19 +113,22 @@ const UserAuth = (WrappedComponent) => {
                 <div className="Login">
                     {
                         this.state.showLogin
-                            ? <UserLogin toggleUserRegistration={this.toggleUserRegistration} 
-                                handleLogin={this.handleLogin}/>
+                            ?   <div>
+                                    <UserLogin toggleUserRegistration = { this.toggleUserRegistration } 
+                                        handleLoginUserPwd={ this.handleLoginUserPwd }
+                                        handleLoginGoogle={ this.handleLoginGoogle }/>
+                                </div>
                             : null
                     }
                     {
                         this.state.showRegister
-                            ? <UserRegistration toggleUserRegistration={this.toggleUserRegistration} 
-                                handleRegistration={this.handleRegistration}/>
+                            ? <UserRegistration toggleUserRegistration={ this.toggleUserRegistration } 
+                                handleRegistration={ this.handleRegistration }/>
                             : null
                     }
                     {
                         this.state.showForgotPwd
-                            ? <UserForgotPwd toggleUserRegistration={this.toggleUserRegistration} />
+                            ? <UserForgotPwd toggleUserRegistration={ this.toggleUserRegistration } />
                             : null
                     }
                 </div>

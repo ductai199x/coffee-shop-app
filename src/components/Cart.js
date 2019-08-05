@@ -1,7 +1,15 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Drawer, Divider, NumericInput, Intent, Alert, Toaster, Button } from  '@blueprintjs/core';
+import { 
+    Drawer, 
+    Divider, 
+    NumericInput, 
+    Intent, 
+    Alert, 
+    // Toaster, 
+    // Button 
+} from  '@blueprintjs/core';
 
 import { numToCurrency, calculateTotal } from './Helper.js';
 import { updateInCart, removeFromCart } from '../actions/actions.js';
@@ -23,13 +31,13 @@ class Cart extends React.Component {
             item.quantity = quantity;
             this.props.updateInCart(item);
         } else {
-            this.setState({isAlertDeleteItem: true, itemBeingDeleted: item});
+            this.setState({ isAlertDeleteItem: true, itemBeingDeleted: item });
         }
     }
 
     removeFromCart = (item) => {
         this.props.removeFromCart(this.state.itemBeingDeleted);
-        this.setState({isAlertDeleteItem: false, itemBeingDeleted: {}});
+        this.setState({ isAlertDeleteItem: false, itemBeingDeleted: {} });
     }
 
     renderItem = (key) => {
@@ -37,24 +45,24 @@ class Cart extends React.Component {
             return null;
         else
             return(
-                <div className={"Cart-Item column " + key.id} key={key.id}>
+                <div className={ "Cart-Item column " + key.id } key={ key.id }>
                     <div className="Item-Image column">
-                        <img src={key.image} />
+                        <img src={ key.image } alt={ key.name }/>
                     </div>
                     <div className="Item-Info column">
-                        <p>{key.name}</p>
-                        <p>{key.description}</p>
+                        <p>{ key.name }</p>
+                        <p>{ key.description }</p>
                         <NumericInput className="Item-Quantity" fill="true"
-                            min={0}
-                            max={20}
-                            value={key.quantity} 
-                            onValueChange={(quantity) => this.updateInCart(quantity, key)}/>
+                            min={ 0 }
+                            max={ 20 }
+                            value={ key.quantity } 
+                            onValueChange={ (quantity) => this.updateInCart(quantity, key) }/>
                     </div>
                     <div className="Item-Image column">
-                        <p>{key.uuid}</p>
+                        <p>{ key.uuid }</p>
                     </div>
                     <div className="Item-Total column">
-                        <p>{numToCurrency(calculateTotal(key)*key.quantity, "USD")}</p>
+                        <p>{ numToCurrency(calculateTotal(key)*key.quantity, "USD") }</p>
                     </div>
                 </div>
             );
@@ -65,10 +73,10 @@ class Cart extends React.Component {
         <Drawer className="Cart-Drawer"
             position="left"
             isOpen={ this.props.isCartOverlay }
-            onClose={() => this.props.toggleCartOverlay() }>
+            onClose={ () => this.props.toggleCartOverlay() }>
             <div className="Cart-Content" vertical="true">
-                <p>Your Cart ({this.props.numInCart})</p>
-                <p>Total Value {numToCurrency(this.props.totalValue, "USD")}</p>
+                <p>Your Cart ({ this.props.numInCart })</p>
+                <p>Total Value { numToCurrency(this.props.totalValue, "USD") }</p>
                 <Divider />
                 {
                     <div className="Cart-Items">
@@ -84,10 +92,10 @@ class Cart extends React.Component {
                 cancelButtonText="Cancel"
                 confirmButtonText="Remove"
                 icon="trash"
-                intent={Intent.DANGER}
-                isOpen={this.state.isAlertDeleteItem}
-                onCancel={() => this.setState({isAlertDeleteItem: false})}
-                onConfirm={() => this.removeFromCart(this.state.itemBeingDeleted)}>
+                intent={ Intent.DANGER }
+                isOpen={ this.state.isAlertDeleteItem }
+                onCancel={ () => this.setState({isAlertDeleteItem: false}) }
+                onConfirm={ () => this.removeFromCart(this.state.itemBeingDeleted) }>
                 <p>
                     Are you sure you want to remove this item from your cart?
                 </p>

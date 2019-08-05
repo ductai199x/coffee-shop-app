@@ -1,11 +1,11 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Drawer, Button, Label, select } from '@blueprintjs/core';
+// import { Drawer, Button, Label, select } from '@blueprintjs/core';
 
 import { updateItemList, addToCart } from '../actions/actions.js';
 
-import { calculateTotal } from './Helper.js';
+// import { calculateTotal } from './Helper.js';
 
 import ItemBoard from './ItemBoard.js';
 import ItemDetails from './ItemDetails.js';
@@ -49,9 +49,9 @@ class Shop extends React.Component {
                 openItemViewer={ this.openItemViewer }/>
             <ItemDetails
                 addToCart={ this.addToCart }
-                viewingItem = { this.state.viewingItem }
-                isViewerOpen = { this.state.isViewerOpen }
-                closeItemViewer = { this.closeItemViewer }/>
+                viewingItem={ this.state.viewingItem }
+                isViewerOpen={ this.state.isViewerOpen }
+                closeItemViewer={ this.closeItemViewer }/>
         </div>
         );
     }

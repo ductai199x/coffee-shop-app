@@ -1,4 +1,9 @@
-import { numToCurrency, calculateTotal, generateUuid, calculateTotalList } from "../components/Helper";
+import { 
+    // numToCurrency, 
+    calculateTotal, 
+    generateUuid, 
+    calculateTotalList 
+} from "../components/Helper";
 
 const defaultShopState = {
     type: "coffee",
@@ -140,8 +145,6 @@ export const cartReducers = (state = defaultCartState, action) => {
                 totalValue: state.itemList.filter(item => item.uuid !== action.payload.uuid).reduce(reducer, 0)
             }
         case 'UPDATE':
-            let temp = 0;
-            let total = 0;
             return {
                 ...state,
                 itemList: state.itemList.map(

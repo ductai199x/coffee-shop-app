@@ -40,12 +40,12 @@ class App extends React.Component {
             this.shopdb.onSnapshot((querySnapshot) => {
                 let itemList = { coffee: [], "brand-items": [] };
                 querySnapshot.forEach((doc) => {
-                    if (doc.id == "coffee") {
+                    if (doc.id === "coffee") {
                         Object.keys(doc.data()).map((item, i) => {
                             itemList["coffee"].push(doc.data()[item])
                         })
                     }
-                    if (doc.id == "brand-items") {
+                    if (doc.id === "brand-items") {
                         Object.keys(doc.data()).map((item, i) => {
                             itemList["brand-items"].push(doc.data()[item])
                         })
@@ -78,11 +78,11 @@ class App extends React.Component {
     }
 
     HomePage = (routeProps) => {
-        return ( <Home {...routeProps} getShopItems={this.getShopItems}/> );
+        return ( <Home { ...routeProps } getShopItems={ this.getShopItems }/> );
     }
 
     ShopPage = (routeProps) => {
-        return ( <Shop {...routeProps} getShopItems={this.getShopItems}/> );
+        return ( <Shop { ...routeProps } getShopItems={ this.getShopItems }/> );
     }
 
     render() {
@@ -96,12 +96,12 @@ class App extends React.Component {
                     <Cart isCartOverlay={ this.state.isCartOverlay }
                         toggleCartOverlay= { this.toggleCartOverlay }/>
 
-                    <Route exact path="/" render={this.HomePage} />
-                    <Route path="/shop" render={this.ShopPage} />
+                    <Route exact path="/" render={ this.HomePage } />
+                    <Route path="/shop" render={ this.ShopPage } />
 
                     <UserAuth 
                         isOpen={ this.state.isUserAuthDrawer }
-                        onClose={() => this.toggleUserAuthDrawer() }
+                        onClose={ () => this.toggleUserAuthDrawer() }
                         size="100%"
                         position="top">
                     </UserAuth>

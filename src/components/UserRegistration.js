@@ -1,11 +1,13 @@
 import React from 'react';
-import { Drawer, 
-        Button, 
-        AnchorButton,
-        FormGroup, 
-        InputGroup, 
-        Tooltip, 
-        Intent } from '@blueprintjs/core';
+import { 
+    // Drawer, 
+    Button, 
+    // AnchorButton,
+    FormGroup, 
+    InputGroup, 
+    Tooltip, 
+    Intent 
+} from '@blueprintjs/core';
 
 class UserRegistration extends React.Component {
     constructor(props) {
@@ -25,19 +27,19 @@ class UserRegistration extends React.Component {
 
     render() {
         const lockButton = (
-            <Tooltip content={`${this.state.showPassword ? "Hide" : "Show"} Password`} disabled={this.state.disabled}>
+            <Tooltip content={ `${this.state.showPassword ? "Hide" : "Show"} Password` } disabled={ this.state.disabled }>
                 <Button
-                    disabled={this.state.disabled}
-                    icon={this.state.showPassword ? "unlock" : "lock"}
-                    intent={Intent.WARNING}
-                    minimal={true}
-                    onClick={this.handleLockClick}
+                    disabled={ this.state.disabled }
+                    icon={ this.state.showPassword ? "unlock" : "lock" }
+                    intent={ Intent.WARNING }
+                    minimal={ true }
+                    onClick={ this.handleLockClick }
                 />
             </Tooltip>
         );
         return(
             <div className="User-Registration">
-                <form className="Registration-Form" onSubmit={(e) => this.props.handleRegistration(e)}>
+                <form className="Registration-Form" onSubmit={ (e) => this.props.handleRegistration(e) }>
                     <div className="greetings">
                         Join us now. Easy and Efficient!
                     </div>
@@ -55,11 +57,11 @@ class UserRegistration extends React.Component {
                         labelFor="login-password">
                         <InputGroup id="login-password"
                             required
-                            disabled={this.state.disabled}
+                            disabled={ this.state.disabled }
                             placeholder="Enter your password..."
                             name="password"
-                            rightElement={lockButton}
-                            type={this.state.showPassword ? "text" : "password"}/>
+                            rightElement={ lockButton }
+                            type={ this.state.showPassword ? "text" : "password" }/>
                     </FormGroup>
                     <FormGroup
                         label="Your Name"
@@ -70,7 +72,7 @@ class UserRegistration extends React.Component {
                             name="name"
                             type="text"/>
                     </FormGroup>
-                    <Button text="Back" icon="arrow-left" onClick={this.props.toggleUserRegistration}/>
+                    <Button text="Back" icon="arrow-left" onClick={ this.props.toggleUserRegistration }/>
                     <Button text="Register" icon="key" type="submit"/>
                 </form>
             </div>

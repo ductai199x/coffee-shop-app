@@ -15,12 +15,12 @@ class Header extends React.Component {
         return(
         <div className="Header">
             <Navbar>
-                <Navbar.Group align={Alignment.LEFT}>
+                <Navbar.Group align={ Alignment.LEFT }>
                     <Navbar.Heading>Coffee Shop App</Navbar.Heading>
                     <Navbar.Divider />
                     <AnchorButton icon="home" text="Home" href="/" />
                     <AnchorButton icon="shop" text="Shop" href="/shop" />
-                    <AnchorButton icon="user" text="Log In" onClick={() => this.props.toggleUserAuthDrawer()} />
+                    <AnchorButton icon="user" text="Log In" onClick={ () => this.props.toggleUserAuthDrawer() } />
                 </Navbar.Group>
             </Navbar>
         </div>
