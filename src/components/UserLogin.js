@@ -1,12 +1,17 @@
 import React from 'react';
 import {
-        Button, 
-        AnchorButton,
-        FormGroup, 
-        InputGroup, 
-        Tooltip, 
-        Intent 
-    } from '@blueprintjs/core';
+    Icon,
+    Button, 
+    AnchorButton,
+    FormGroup, 
+    InputGroup, 
+    Tooltip, 
+    Intent,
+} from '@blueprintjs/core';
+import { 
+    GoogleLoginButton,
+    FacebookLoginButton
+} from "react-social-login-buttons";
 
 class UserLogin extends React.Component {
     constructor(props) {
@@ -62,8 +67,22 @@ class UserLogin extends React.Component {
                             rightElement={ lockButton }
                             type={ this.state.showPassword ? "text" : "password" }/>
                     </FormGroup>
-                    <Button text="Login" icon="key" type="submit"/>
+                    <div className="Login-Btn-Div">
+                        <Button className="UserPwd" type="submit"
+                            style={ UserPwdLoginBtnStyle }>
+                            <div style={{ alignItems: "center", display: "flex", height: "100%" }}>
+                                <Icon icon="key" iconSize={24} color="white"/>
+                                <div style={{ width: "10px" }}></div>
+                                <div style={{ textAlign: "left", width: "100%" }}>Login</div>
+                            </div>
+                        </Button>
+                        <GoogleLoginButton className="Google" iconSize="24px" onClick={ this.props.handleLoginGoogle }
+                            style={ LoginBtnsStyle }/>
+                        <FacebookLoginButton className="Facebook" iconSize="24px" onClick={ this.props.handleLoginFacebook }
+                            style={ LoginBtnsStyle }/>
+                    </div>
                 </form>
+                
                 <AnchorButton text="Forgot Password" minimal="true"/>
                 <AnchorButton text="Register New User" minimal="true" onClick={ this.props.toggleUserRegistration }/>
             </div>
@@ -72,3 +91,24 @@ class UserLogin extends React.Component {
 }
 
 export default UserLogin;
+
+const LoginBtnsStyle = {
+    border: "0px none", 
+    borderRadius: "3px", 
+    boxShadow: "rgba(0, 0, 0, 0.5) 0px 1px 2px",
+    cursor: "pointer", 
+    fontSize: "0.8rem", 
+    margin: "5px 10px 5px 0px",
+    width: "8rem", 
+    overflow: "hidden", 
+    padding: "0px 8px", 
+    height: "35px", 
+}
+
+const UserPwdLoginBtnStyle = Object.assign({},
+    LoginBtnsStyle,
+    {
+        color: "rgb(255, 255, 255)",
+        background: "green none repeat scroll 0% 0%"
+    }
+);

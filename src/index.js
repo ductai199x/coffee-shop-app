@@ -6,6 +6,7 @@ import './index.css';
 import App from './components/App.js';
 import * as serviceWorker from './serviceWorker.js';
 import WebFont from 'webfontloader';
+import "typeface-roboto";
 
 import './fonts.css';
 

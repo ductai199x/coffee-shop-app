@@ -1,5 +1,18 @@
+.UserAuth-Drawer {
+    padding: 2rem;
+}
+
 .UserAuth-Drawer .close-button {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 1rem;
+}
+
+.Login-Btn-Div {
+    display: flex;
+    flex-direction: row;
+    font-family: 'Roboto';
 }
 
 @media (max-width: 576px) {

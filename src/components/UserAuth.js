@@ -76,7 +76,7 @@ const UserAuth = (WrappedComponent) => {
 
         handleLoginGoogle = (e) => {
             e.preventDefault();
-            this.auth.signInWithPopup(this.provider).then((result) => {
+            this.auth.signInWithPopup(this.googleAuthProvider).then((result) => {
                 // This gives you a Google Access Token. You can use it to access the Google API.
                 const token = result.credential.accessToken;
                 // The signed-in user info.
@@ -92,6 +92,26 @@ const UserAuth = (WrappedComponent) => {
                 var credential = error.credential;
                 console.log(errorMessage, errorCode, email, credential);
             });
+        }
+
+        handleLoginFacebook = (e) => {
+            e.preventDefault();
+            // this.auth.signInWithPopup(this.provider).then((result) => {
+            //     // This gives you a Google Access Token. You can use it to access the Google API.
+            //     const token = result.credential.accessToken;
+            //     // The signed-in user info.
+            //     const user = result.user;
+
+            //     console.log(user);
+            //     this.props.loginUser(user);
+            // }).catch((error) => {
+            //     // Handle Errors here.
+            //     var errorCode = error.code;
+            //     var errorMessage = error.message;
+            //     var email = error.email;
+            //     var credential = error.credential;
+            //     console.log(errorMessage, errorCode, email, credential);
+            // });
         }
 
         handleLogout = (e) => {
@@ -127,7 +147,8 @@ const UserAuth = (WrappedComponent) => {
                             ?   <div>
                                     <UserLogin toggleUserRegistration = { this.toggleUserRegistration } 
                                         handleLoginUserPwd={ this.handleLoginUserPwd }
-                                        handleLoginGoogle={ this.handleLoginGoogle }/>
+                                        handleLoginGoogle={ this.handleLoginGoogle }
+                                        handleLoginFacebook={ this.handleLoginFacebook }/>
                                 </div>
                             : null
                     }
@@ -159,13 +180,10 @@ const UserAuth = (WrappedComponent) => {
 
         render() {
             return(
-            <WrappedComponent className="UserAuth-Drawer" 
-                {...this.props}>
-                <Button className="close-button" 
-                    icon="cross" minimal="true"
-                    onClick={() => this.props.onClose() }/>
+            <WrappedComponent { ...this.props } className="UserAuth-Drawer">
+                <Button className="close-button" icon="cross" minimal="true" onClick={ () => this.props.onClose() }/>
                 {
-                    this.props.user.id === undefined
+                    this.props.user.uid === undefined
                     ? this.renderLogin()
                     : this.renderLogout()
                 }
