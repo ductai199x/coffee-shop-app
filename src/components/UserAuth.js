@@ -1,9 +1,21 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Drawer, Button, FormGroup, InputGroup, Tooltip, Intent } from  '@blueprintjs/core';
+import { Drawer, 
+         Button, 
+         AnchorButton,
+         FormGroup, 
+         InputGroup, 
+         Tooltip, 
+         Intent } from '@blueprintjs/core';
 
 import { loginUser, logoutUser } from '../actions/actions.js';
+
+import UserLogin from './UserLogin.js';
+import UserRegistration from './UserRegistration.js';
+import UserForgotPwd from './UserForgotPwd.js';
+
+import firebase from './Firebase.js';
 
 import './css/UserAuth.css';
 
@@ -13,10 +25,21 @@ const UserAuth = (WrappedComponent) => {
             super(props);
 
             this.state = {
-                disabled: false,
-                large: false,
-                showPassword: false,
-                small: false,
+                showLogin: false,
+                showLogout: false,
+                showRegister: false,
+                showForgotPwd: false,
+            }
+        }
+
+        auth = firebase.auth();
+        provider = new firebase.auth.GoogleAuthProvider();
+
+        componentWillReceiveProps(nextProps) {
+            if (nextProps.user.id === undefined) {
+                this.setState({showLogin: true, showLogout: false, showRegister: false, showForgotPwd: false});
+            } else {
+                this.setState({showLogin: false, showLogout: true, showRegister: false, showForgotPwd: false});
             }
         }
 
@@ -31,68 +54,85 @@ const UserAuth = (WrappedComponent) => {
             })
         }
 
+        toggleUserRegistration = () => {
+            this.setState({
+                showLogin: !this.state.showLogin, 
+                showLogout: false, 
+                showRegister: !this.state.showRegister, 
+                showForgotPwd: false
+            });
+        }
+
         // Mocking Loging in User API call
         handleLogin = (e) => {
             e.preventDefault();
-            const email = e.target.email.value;
-            const password = e.target.password.value;
-            this.attemptLogin(email, password)
-                .then((data) => {
-                    this.props.loginUser(data);
-                })
-                .catch((e) => {
-                    console.log(e)
-                });
+            // const email = e.target.email.value;
+            // const password = e.target.password.value;
+            // this.attemptLogin(email, password)
+            //     .then((data) => {
+            //         
+            //     })
+            //     .catch((e) => {
+            //         console.log(e)
+            //     });
+            this.auth.signInWithPopup(this.provider).then(function(result) {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                const token = result.credential.accessToken;
+                // The signed-in user info.
+                const user = result.user;
+                // ...
+                console.log(user);
+                this.props.loginUser(user);
+            }).catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // The email of the user's account used.
+                var email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                var credential = error.credential;
+                // ...
+            });
+              
         }
 
         handleLogout = (e) => {
-            this.props.logoutUser()
+            this.auth.signOut().then(function() {
+                // Sign-out successful.
+                this.props.logoutUser()
+              }).catch(function(error) {
+                // An error happened.
+              });
         }
 
-        handleLockClick = () => {
-            this.setState({ showPassword: !this.state.showPassword });
+        handleRegistration = (e) => {
+            e.preventDefault();
+            const email = e.target.email.value;
+            const password = e.target.password.value;
+
         }
 
         renderLogin = () => {
-            const lockButton = (
-                <Tooltip content={`${this.state.showPassword ? "Hide" : "Show"} Password`} disabled={this.state.disabled}>
-                    <Button
-                        disabled={this.state.disabled}
-                        icon={this.state.showPassword ? "unlock" : "lock"}
-                        intent={Intent.WARNING}
-                        minimal={true}
-                        onClick={this.handleLockClick}
-                    />
-                </Tooltip>
-            );
             return(
-                <form className="Login-Panel" onSubmit={(e) => this.handleLogin(e)}>
-                    <div className="greetings">
-                        Good morning! Let's log in so that we can create the best experience for you!
-                    </div>
-                    <FormGroup
-                        label="Your Email"
-                        labelFor="login-email">
-                        <InputGroup id="login-email"
-                            required
-                            placeholder="Enter your email..."
-                            name="email"
-                            // rightElement={lockButton}
-                            type="text"/>
-                    </FormGroup>
-                    <FormGroup
-                        label="Your Password"
-                        labelFor="login-password">
-                        <InputGroup id="login-password"
-                            required
-                            disabled={this.state.disabled}
-                            placeholder="Enter your password..."
-                            name="password"
-                            rightElement={lockButton}
-                            type={this.state.showPassword ? "text" : "password"}/>
-                    </FormGroup>
-                    <Button text="Login" icon="key" type="submit"/>
-                </form>
+                <div className="Login">
+                    {
+                        this.state.showLogin
+                            ? <UserLogin toggleUserRegistration={this.toggleUserRegistration} 
+                                handleLogin={this.handleLogin}/>
+                            : null
+                    }
+                    {
+                        this.state.showRegister
+                            ? <UserRegistration toggleUserRegistration={this.toggleUserRegistration} 
+                                handleRegistration={this.handleRegistration}/>
+                            : null
+                    }
+                    {
+                        this.state.showForgotPwd
+                            ? <UserForgotPwd toggleUserRegistration={this.toggleUserRegistration} />
+                            : null
+                    }
+                </div>
             )
         }
 
