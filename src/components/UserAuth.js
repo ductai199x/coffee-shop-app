@@ -56,8 +56,9 @@ const UserAuth = (WrappedComponent) => {
 
         handleLoginUserPwd = (e) => {
             e.preventDefault();
-            console.log()
-            this.auth.signInWithEmailAndPassword(e.target.email.value, e.target.password.value).then((result) => {
+            const email = e.target.email.value;
+            const password = e.target.password.value;
+            this.auth.signInWithEmailAndPassword(email, password).then((result) => {
                 // The signed-in user info.
                 const user = result.user;
 
@@ -69,7 +70,7 @@ const UserAuth = (WrappedComponent) => {
                 var errorMessage = error.message;
                 var email = error.email;
                 var credential = error.credential;
-                console.log(errorMessage, errorCode, email, credential)
+                console.log(errorMessage, errorCode, email, credential);
             });
         }
 
@@ -89,15 +90,15 @@ const UserAuth = (WrappedComponent) => {
                 var errorMessage = error.message;
                 var email = error.email;
                 var credential = error.credential;
-                console.log(errorMessage, errorCode, email, credential)
+                console.log(errorMessage, errorCode, email, credential);
             });
         }
 
         handleLogout = (e) => {
-            this.auth.signOut().then(function() {
+            this.auth.signOut().then(() => {
                 // Sign-out successful.
                 this.props.logoutUser()
-              }).catch(function(error) {
+              }).catch((error) => {
                 // An error happened.
               });
         }
@@ -106,6 +107,16 @@ const UserAuth = (WrappedComponent) => {
             e.preventDefault();
             const email = e.target.email.value;
             const password = e.target.password.value;
+
+            firebase.auth().createUserWithEmailAndPassword(email, password).then((result) => {
+                console.log(result);
+                this.toggleUserRegistration();
+            }).catch((error) => {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log(errorMessage, errorCode);
+              });
         }
 
         renderLogin = () => {
